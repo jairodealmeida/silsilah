@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'birthday'    => 'Ulang Tahun',
-    'upcoming'    => 'Ulang tahun akan datang',
-    'no_upcoming' => 'Belum ada ulang tahun dalam :days hari kedepan.',
-    'remaining'   => ':count hari',
-    'age_years'   => ':age tahun',
-    'days'        => 'Hari',
+    'birthday'    => 'Aniversário',
+    'upcoming'    => 'Próximos aniversários',
+    'no_upcoming' => 'Nenhum aniversário nos próximos dias.',
+    'remaining'   => ':count Dias',
+    'age_years'   => ':age Anos',
+    'days'        => 'dias',
 ];
