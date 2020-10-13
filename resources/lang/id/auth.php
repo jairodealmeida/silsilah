@@ -25,4 +25,6 @@ return [
     'send_reset_password_link'  => 'Enviar endereço de redefinição de senha',
     'change_password_success'   => 'Sua senha foi alterada',
     'change_password_error'    => 'Ops, alteração de senha falhou',
+    'remember_me'    =>'Lembrar-me',
+    'send_password_reset_link'    =>'Send Password Reset Link',
 ];

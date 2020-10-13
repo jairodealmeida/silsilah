@@ -39,4 +39,31 @@ return [
     'download' => 'Baixar',
     'delete' => 'Delete',
     'cancel' => 'Cancelar',
+
+
+
+    'description' => 'Descrição',
+    'no_records' => 'Nenhum registro encontrado',
+    'register' => 'Cadastrar',
+
+    //races
+    'race'  => 'Raça',
+    'races'  => 'Raças',
+    'record_races'  => 'Cadastrar raças',
+    'genotype'  => 'Genotipo',
+    
+
+    //creators 
+    'creator'  => 'Criador',
+    'creators'  => 'Criadores',
+    'record_creators'  => 'Cadastrar criadores',
+
+    //animals
+    'animal'  => 'Animal',
+    'animals'  => 'Animais',
+    'record_animals'  => 'Cadastrar animais',
+    
+
+
+
 ];

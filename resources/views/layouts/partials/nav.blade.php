@@ -15,20 +15,26 @@
                 {{ config('app.name', 'Laravel') }}
             </a>
         </div>
-
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
                 <li><a href="{{ route('users.search') }}">{{ __('app.search_your_family') }}</a></li>
                 <li><a href="{{ route('birthdays.index') }}">{{ __('birthday.birthday') }}</a></li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <!-- Left Side Of Navbar -->
+            <ul class="nav navbar-nav">
+                <li><a href="{{ route('races.index') }}">{{ __('app.races') }}</a></li>
+                <li><a href="{{ route('creators.index') }}">{{ __('app.creators') }}</a></li>
+                <li><a href="{{ route('animals.index') }}">{{ __('app.animals') }}</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 <?php $mark = (preg_match('/\?/', url()->current())) ? '&' : '?';?>
-                <li><a href="{{ url(url()->current() . $mark . 'lang=en') }}">Inglês</a></li>
-                <li><a href="{{ url(url()->current() . $mark . 'lang=id') }}">Português</a></li>
+                <!--li><a href="{{ url(url()->current() . $mark . 'lang=en') }}">Inglês</a></li>
+                <li><a href="{{ url(url()->current() . $mark . 'lang=id') }}">Português</a></li-->
                 @if (Auth::guest())
                     <li><a href="{{ route('login') }}">{{ __('auth.login') }}</a></li>
                     <li><a href="{{ route('register') }}">{{ __('auth.register') }}</a></li>

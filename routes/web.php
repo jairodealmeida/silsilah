@@ -49,6 +49,26 @@ Route::get('couples/{couple}', ['as' => 'couples.show', 'uses' => 'CouplesContro
 Route::get('couples/{couple}/edit', ['as' => 'couples.edit', 'uses' => 'CouplesController@edit']);
 Route::patch('couples/{couple}', ['as' => 'couples.update', 'uses' => 'CouplesController@update']);
 
+/*Route::get('race', 'RaceController@index')->name('race.index');
+Route::get('race/register', ['as' => 'race.register', 'races' => 'RaceController@register']);
+Route::get('race/{race}', ['as' => 'races.show', 'races' => 'RaceController@show']);
+Route::get('race/{race}/edit', ['as' => 'races.edit', 'races' => 'RaceController@edit']);
+Route::patch('race/{race}', ['as' => 'races.update', 'races' => 'RaceController@update']);*/
+//Route::apiResource('races', 'RaceController');
+Route::get('races', 'RaceController@index')->name('races.index');
+Route::get('races/create', 'RaceController@create')->name('races.create');
+Route::post('races', 'RaceController@store')->name('races.store');
+Route::get('races/{race}', 'RaceController@show')->name('races.show');
+Route::get('races/{race}/edit', 'RaceController@edit')->name('races.edit');
+Route::patch('races/{race}', 'RaceController@update')->name('races.update');
+Route::delete('races/{user}', 'RaceController@destroy')->name('races.destroy');
+
+
+Route::get('creators', 'CreatorsController@index')->name('creators.index');
+
+Route::get('animals', 'AnimalsController@index')->name('animals.index');
+
+
 /**
  * Admin only routes
  */

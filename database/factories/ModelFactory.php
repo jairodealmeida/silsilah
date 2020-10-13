@@ -2,6 +2,7 @@
 
 use App\Couple;
 use App\User;
+use App\Animal;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,4 +48,25 @@ $factory->define(Couple::class, function (Faker\Generator $faker) {
             return factory(User::class)->create()->id;
         },
     ];
+});
+
+
+
+$factory->define(Animal::class, function (Faker\Generator $faker) {
+    $name = $faker->name;
+    return [
+        'id' => $faker->uuid,
+        'name' => $name,
+        'nickname' => $name,
+        'gender_id' => rand(1, 2),
+        'manager_id' => $faker->uuid,
+    ];
+});
+
+$factory->state(Animal::class, 'male', function (Faker\Generator $faker) {
+    return ['gender_id' => 1];
+});
+
+$factory->state(Animal::class, 'female', function (Faker\Generator $faker) {
+    return ['gender_id' => 2];
 });
