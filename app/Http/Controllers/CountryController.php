@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Genotype;
+use App\Country;
 
-class GenotypeController extends Controller
+class CountryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,8 @@ class GenotypeController extends Controller
      */
     public function index()
     {
-        $genotypes = Genotype::all();
-
-        return view('genotypes.index', compact('genotypes'));
+        $countries = Country::all();
+        return view('countries.index', compact('countries'));
     }
 
     /**
@@ -26,7 +25,7 @@ class GenotypeController extends Controller
      */
     public function create()
     {
-        return view('genotypes.create');
+        return view('countries.create');
     }
 
     /**
@@ -38,16 +37,16 @@ class GenotypeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required',
+            'name'=>'required',
             'description'=>'required'
         ]);
 
-        $genotype = new Genotype([
-            'title' => $request->get('title'),
+        $country = new Country([
+            'name' => $request->get('name'),
             'description' => $request->get('description')
         ]);
-        $genotype->save();
-        return redirect('/genotypes')->with('success', 'Genotype saved!');
+        $country->save();
+        return redirect('/countries')->with('success', 'Salvo com sucesso!');
     }
 
     /**
@@ -69,8 +68,8 @@ class GenotypeController extends Controller
      */
     public function edit($id)
     {
-        $genotype = Genotype::find($id);
-        return view('genotypes.edit', compact('genotype'));  
+        $country = Country::find($id);
+        return view('countries.edit', compact('country'));  
     }
 
     /**
@@ -83,15 +82,15 @@ class GenotypeController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title'=>'required',
+            'name'=>'required',
             'description'=>'required'
         ]);
 
-        $genotype = Genotype::find($id);
-        $genotype->title =  $request->get('title');
-        $genotype->description = $request->get('description');
-        $genotype->save();
-        return redirect('/genotypes')->with('success', 'Genotype updated!');
+        $country = Country::find($id);
+        $country->name =  $request->get('name');
+        $country->description = $request->get('description');
+        $country->save();
+        return redirect('/countries')->with('success', 'Alterado com sucesso!');
     }
 
     /**
@@ -102,9 +101,9 @@ class GenotypeController extends Controller
      */
     public function destroy($id)
     {
-        $genotype = Genotype::find($id);
-        $genotype->delete();
+        $country = Country::find($id);
+        $country->delete();
 
-        return redirect('/genotypes')->with('success', 'Genotype deleted!');
+        return redirect('/countries')->with('success', 'Excluido com sucesso!');
     }
 }

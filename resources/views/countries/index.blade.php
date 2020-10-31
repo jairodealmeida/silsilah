@@ -3,39 +3,33 @@
 @section('content')
 <div class="row">
 <div class="col-sm-12">
-    <h1 class="display-3">races</h1>  
+    <h1 class="display-3">Países de origem</h1>  
     <div>
-    <a style="margin: 19px;" href="{{ route('races.create')}}" class="btn btn-primary">New race</a>
+    <a style="margin: 19px;" href="{{ route('countries.create')}}" class="btn btn-primary">Novo país</a>
     </div>    
   <table class="table table-striped">
     <thead>
         <tr>
           <td>Código</td>
           <td>Nome</td>
-          <td>Espécie</td>
-          <td>Genotipo</td>
-          <td>Origem</td>
           <td>Descrição</td>
           <td colspan = 2>Ações</td>
         </tr>
     </thead>
     <tbody>
-        @forelse($races as $race)
+        @forelse($countries as $country)
         <tr>
-            <td>{{$race->id}}</td>
-            <td>{{$race->name}} </td>
-            <td>{{$race->specie}}</td>
-            <td>{{$race->genotype}}</td>
-            <td>{{$race->origin}}</td>
-            <td>{{$race->description}}</td>
+            <td>{{$country->id}}</td>
+            <td>{{$country->name}} </td>
+            <td>{{$country->description}} </td>
             <td>
-                <a href="{{ route('races.edit',$race->id)}}" class="btn btn-primary">Editar</a>
+                <a href="{{ route('countries.edit',$country->id)}}" class="btn btn-primary">Editar</a>
             </td>
             <td>
-                <form action="{{ route('races.destroy', $race->id)}}" method="post">
+                <form action="{{ route('countries.destroy', $country->id)}}" method="post">
                   @csrf
                   @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Excluir</button>
+                  <button class="btn btn-danger" type="submit">Remover</button>
                 </form>
             </td>
         </tr>

@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Genotype extends Model
+class Pedigree extends Model
 {
     protected $fillable = [
-        'title',
-        'description'    
+        'animal',
+        'pedigree'
     ];
 }

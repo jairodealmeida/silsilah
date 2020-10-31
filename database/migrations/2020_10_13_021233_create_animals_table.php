@@ -33,6 +33,10 @@ class CreateAnimalsTable extends Migration
             $table->string('phone')->nullable();
             $table->string('photo_path')->nullable();
             $table->uuid('manager_id')->nullable();
+
+            $table->uuid('race_id')->nullable();
+            $table->uuid('proprietary');
+
             $table->rememberToken();
             $table->timestamps();
         });

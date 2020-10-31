@@ -18,7 +18,7 @@ class CreateRacesTable extends Migration
             $table->string('name')->nullable();
             $table->uuid('specie')->nullable();
             $table->uuid('genotype')->nullable();
-            $table->string('origin')->nullable();
+            $table->uuid('origin')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
         });

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGenotypesTable extends Migration
+class CreatePedigreesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateGenotypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('genotypes', function (Blueprint $table) {
+        Schema::create('pedigrees', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title')->nullable();
-            $table->string('description')->nullable();
+            $table->uuid('animal');
+            $table->string('pedigree');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateGenotypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('genotypes');
+        Schema::dropIfExists('pedigrees');
     }
 }

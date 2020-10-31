@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Genotype;
 
-class GenotypeController extends Controller
+class BreederController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,7 @@ class GenotypeController extends Controller
      */
     public function index()
     {
-        $genotypes = Genotype::all();
-
-        return view('genotypes.index', compact('genotypes'));
+        //
     }
 
     /**
@@ -26,7 +23,7 @@ class GenotypeController extends Controller
      */
     public function create()
     {
-        return view('genotypes.create');
+        //
     }
 
     /**
@@ -37,17 +34,7 @@ class GenotypeController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title'=>'required',
-            'description'=>'required'
-        ]);
-
-        $genotype = new Genotype([
-            'title' => $request->get('title'),
-            'description' => $request->get('description')
-        ]);
-        $genotype->save();
-        return redirect('/genotypes')->with('success', 'Genotype saved!');
+        //
     }
 
     /**
@@ -69,8 +56,7 @@ class GenotypeController extends Controller
      */
     public function edit($id)
     {
-        $genotype = Genotype::find($id);
-        return view('genotypes.edit', compact('genotype'));  
+        //
     }
 
     /**
@@ -82,16 +68,7 @@ class GenotypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'title'=>'required',
-            'description'=>'required'
-        ]);
-
-        $genotype = Genotype::find($id);
-        $genotype->title =  $request->get('title');
-        $genotype->description = $request->get('description');
-        $genotype->save();
-        return redirect('/genotypes')->with('success', 'Genotype updated!');
+        //
     }
 
     /**
@@ -102,9 +79,6 @@ class GenotypeController extends Controller
      */
     public function destroy($id)
     {
-        $genotype = Genotype::find($id);
-        $genotype->delete();
-
-        return redirect('/genotypes')->with('success', 'Genotype deleted!');
+        //
     }
 }

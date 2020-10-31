@@ -24,9 +24,14 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
+                <li><a href="{{ route('countries.index') }}">{{ __('app.countries') }}</a></li>
+                
+                <li><a href="{{ route('species.index') }}">{{ __('app.species') }}</a></li>
+                <li><a href="{{ route('genotypes.index') }}">{{ __('app.genotypes') }}</a></li>
                 <li><a href="{{ route('races.index') }}">{{ __('app.races') }}</a></li>
                 <li><a href="{{ route('creators.index') }}">{{ __('app.creators') }}</a></li>
                 <li><a href="{{ route('animals.index') }}">{{ __('app.animals') }}</a></li>
+                
             </ul>
 
             <!-- Right Side Of Navbar -->

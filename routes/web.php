@@ -61,8 +61,32 @@ Route::post('races', 'RaceController@store')->name('races.store');
 Route::get('races/{race}', 'RaceController@show')->name('races.show');
 Route::get('races/{race}/edit', 'RaceController@edit')->name('races.edit');
 Route::patch('races/{race}', 'RaceController@update')->name('races.update');
-Route::delete('races/{user}', 'RaceController@destroy')->name('races.destroy');
+Route::delete('races/{race}', 'RaceController@destroy')->name('races.destroy');
 
+Route::get('countries', 'CountryController@index')->name('countries.index');
+Route::get('countries/create', 'CountryController@create')->name('countries.create');
+Route::post('countries', 'CountryController@store')->name('countries.store');
+Route::get('countries/{country}', 'CountryController@show')->name('countries.show');
+Route::get('countries/{country}/edit', 'CountryController@edit')->name('countries.edit');
+Route::patch('countries/{country}', 'CountryController@update')->name('countries.update');
+Route::delete('countries/{country}', 'CountryController@destroy')->name('countries.destroy');
+
+Route::get('species', 'SpecieController@index')->name('species.index');
+Route::get('species/create', 'SpecieController@create')->name('species.create');
+Route::post('species', 'SpecieController@store')->name('species.store');
+Route::get('species/{specie}', 'SpecieController@show')->name('species.show');
+Route::get('species/{specie}/edit', 'SpecieController@edit')->name('species.edit');
+Route::patch('species/{specie}', 'SpecieController@update')->name('species.update');
+Route::delete('species/{specie}', 'SpecieController@destroy')->name('species.destroy');
+
+
+Route::get('genotypes', 'GenotypeController@index')->name('genotypes.index');
+Route::get('genotypes/create', 'GenotypeController@create')->name('genotypes.create');
+Route::post('genotypes', 'GenotypeController@store')->name('genotypes.store');
+Route::get('genotypes/{genotype}', 'GenotypeController@show')->name('genotypes.show');
+Route::get('genotypes/{genotype}/edit', 'GenotypeController@edit')->name('genotypes.edit');
+Route::patch('genotypes/{genotype}', 'GenotypeController@update')->name('genotypes.update');
+Route::delete('genotypes/{genotype}', 'GenotypeController@destroy')->name('genotypes.destroy');
 
 Route::get('creators', 'CreatorsController@index')->name('creators.index');
 

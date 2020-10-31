@@ -12,17 +12,17 @@ use App\Http\Requests\Animal\UpdateRequest;
 class AnimalController extends Controller
 {
     /**
-     * Search user by keyword.
+     * Search animal by keyword.
      *
      * @return \Illuminate\View\View
      */
     public function search(Request $request)
     {
         $q = $request->get('q');
-        $users = [];
+        $animals = [];
 
         if ($q) {
-            $users = Animal::with('father', 'mother')->where(function ($query) use ($q) {
+            $animals = Animal::with('father', 'mother')->where(function ($query) use ($q) {
                 $query->where('name', 'like', '%'.$q.'%');
                 $query->orWhere('nickname', 'like', '%'.$q.'%');
             })
@@ -30,25 +30,25 @@ class AnimalController extends Controller
                 ->paginate(24);
         }
 
-        return view('users.search', compact('users'));
+        return view('animals.search', compact('animals'));
     }
 
     /**
-     * Display the specified User.
+     * Display the specified Animal.
      *
-     * @param  \App\User  $user
+     * @param  \App\Animal  $animal
      * @return \Illuminate\View\View
      */
-    public function show(Animal $user)
+    public function show(Animal $animal)
     {
-        $usersMariageList = $this->getUserMariageList($user);
+        $animalsMariageList = $this->getAnimalMariageList($animal);
         $allMariageList = $this->getAllMariageList();
         $malePersonList = $this->getPersonList(1);
         $femalePersonList = $this->getPersonList(2);
 
-        return view('users.show', [
-            'user'             => $user,
-            'usersMariageList' => $usersMariageList,
+        return view('animals.show', [
+            'animal'             => $animal,
+            'animalsMariageList' => $animalsMariageList,
             'malePersonList'   => $malePersonList,
             'femalePersonList' => $femalePersonList,
             'allMariageList'   => $allMariageList,
@@ -56,15 +56,15 @@ class AnimalController extends Controller
     }
 
     /**
-     * Display the user's family chart.
+     * Display the animal's family chart.
      *
-     * @param  \App\User  $user
+     * @param  \App\Animal  $animal
      * @return \Illuminate\View\View
      */
-    public function chart(Animal $user)
+    public function chart(Animal $animal)
     {
-        $father = $user->father_id ? $user->father : null;
-        $mother = $user->mother_id ? $user->mother : null;
+        $father = $animal->father_id ? $animal->father : null;
+        $mother = $animal->mother_id ? $animal->mother : null;
 
         $fatherGrandpa = $father && $father->father_id ? $father->father : null;
         $fatherGrandma = $father && $father->mother_id ? $father->mother : null;
@@ -72,158 +72,158 @@ class AnimalController extends Controller
         $motherGrandpa = $mother && $mother->father_id ? $mother->father : null;
         $motherGrandma = $mother && $mother->mother_id ? $mother->mother : null;
 
-        $childs = $user->childs;
+        $childs = $animal->childs;
         $colspan = $childs->count();
         $colspan = $colspan < 4 ? 4 : $colspan;
 
-        $siblings = $user->siblings();
+        $siblings = $animal->siblings();
 
-        return view('users.chart', compact(
-            'user', 'childs', 'father', 'mother', 'fatherGrandpa',
+        return view('animals.chart', compact(
+            'animal', 'childs', 'father', 'mother', 'fatherGrandpa',
             'fatherGrandma', 'motherGrandpa', 'motherGrandma',
             'siblings', 'colspan'
         ));
     }
 
     /**
-     * Show user family tree.
+     * Show animal family tree.
      *
-     * @param  \App\User  $user
+     * @param  \App\Animal  $animal
      * @return \Illuminate\View\View
      */
-    public function tree(Animal $user)
+    public function tree(Animal $animal)
     {
-        return view('users.tree', compact('user'));
+        return view('animals.tree', compact('animal'));
     }
 
     /**
-     * Show the form for editing the specified User.
+     * Show the form for editing the specified Animal.
      *
-     * @param  \App\User  $user
+     * @param  \App\Animal  $animal
      * @return \Illuminate\View\View
      */
-    public function edit(Animal $user)
+    public function edit(Animal $animal)
     {
-        $this->authorize('edit', $user);
+        $this->authorize('edit', $animal);
 
-        $replacementUsers = [];
+        $replacementAnimals = [];
         if (request('action') == 'delete') {
-            $replacementUsers = $this->getPersonList($user->gender_id);
+            $replacementAnimals = $this->getPersonList($animal->gender_id);
         }
 
-        return view('users.edit', compact('user', 'replacementUsers'));
+        return view('animals.edit', compact('animal', 'replacementAnimals'));
     }
 
     /**
-     * Update the specified User in storage.
+     * Update the specified Animal in storage.
      *
-     * @param  \App\Http\Requests\Users\UpdateRequest  $request
-     * @param  \App\User  $user
+     * @param  \App\Http\Requests\Animals\UpdateRequest  $request
+     * @param  \App\Animal  $animal
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateRequest $request, Animal $user)
+    public function update(UpdateRequest $request, Animal $animal)
     {
-        $user->update($request->validated());
+        $animal->update($request->validated());
 
-        return redirect()->route('users.show', $user->id);
+        return redirect()->route('animals.show', $animal->id);
     }
 
     /**
-     * Remove the specified User from storage.
+     * Remove the specified Animal from storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  \App\Animal  $animal
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Request $request, Animal $user)
+    public function destroy(Request $request, Animal $animal)
     {
-        $this->authorize('delete', $user);
+        $this->authorize('delete', $animal);
 
         if ($request->has('replace_delete_button')) {
             $attributes = $request->validate([
-                'replacement_user_id' => 'required|exists:users,id',
+                'replacement_animal_id' => 'required|exists:animals,id',
             ], [
-                'replacement_user_id.required' => __('validation.user.replacement_user_id.required'),
+                'replacement_animal_id.required' => __('validation.animal.replacement_animal_id.required'),
             ]);
 
             DB::beginTransaction();
-            $this->replaceUserOnUsersTable($user->id, $attributes['replacement_user_id']);
-            $this->replaceUserOnCouplesTable($user->id, $attributes['replacement_user_id']);
-            $user->delete();
+            $this->replaceAnimalOnAnimalsTable($animal->id, $attributes['replacement_animal_id']);
+            $this->replaceAnimalOnCouplesTable($animal->id, $attributes['replacement_animal_id']);
+            $animal->delete();
             DB::commit();
 
-            return redirect()->route('users.show', $attributes['replacement_user_id']);
+            return redirect()->route('animals.show', $attributes['replacement_animal_id']);
         }
 
         $request->validate([
-            'user_id' => 'required',
+            'animal_id' => 'required',
         ]);
 
-        if ($request->get('user_id') == $user->id && $user->delete()) {
-            return redirect()->route('users.search');
+        if ($request->get('animal_id') == $animal->id && $animal->delete()) {
+            return redirect()->route('animals.search');
         }
 
         return back();
     }
 
     /**
-     * Upload users photo.
+     * Upload animals photo.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  \App\Animal  $animal
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function photoUpload(Request $request, Animal $user)
+    public function photoUpload(Request $request, Animal $animal)
     {
         $request->validate([
             'photo' => 'required|image|max:200',
         ]);
 
-        if (Storage::exists($user->photo_path)) {
-            Storage::delete($user->photo_path);
+        if (Storage::exists($animal->photo_path)) {
+            Storage::delete($animal->photo_path);
         }
 
-        $user->photo_path = $request->photo->store('images');
-        $user->save();
+        $animal->photo_path = $request->photo->store('images');
+        $animal->save();
 
         return back();
     }
 
     /**
-     * Replace User Ids on users table.
+     * Replace Animal Ids on animals table.
      *
-     * @param  string  $oldUserId
-     * @param  string  $replacementUserId
+     * @param  string  $oldAnimalId
+     * @param  string  $replacementAnimalId
      * @return void
      */
-    private function replaceUserOnUsersTable($oldUserId, $replacementUserId)
+    private function replaceAnimalOnAnimalsTable($oldAnimalId, $replacementAnimalId)
     {
         foreach (['father_id', 'mother_id', 'manager_id'] as $field) {
-            DB::table('users')->where($field, $oldUserId)->update([
-                $field => $replacementUserId,
+            DB::table('animals')->where($field, $oldAnimalId)->update([
+                $field => $replacementAnimalId,
             ]);
         }
     }
 
     /**
-     * Replace User Ids on couples table.
+     * Replace Animal Ids on couples table.
      *
-     * @param string $oldUserId
-     * @param string $replacementUserId
+     * @param string $oldAnimalId
+     * @param string $replacementAnimalId
      *
      * @return void
      */
-    private function replaceUserOnCouplesTable($oldUserId, $replacementUserId)
+    private function replaceAnimalOnCouplesTable($oldAnimalId, $replacementAnimalId)
     {
         foreach (['husband_id', 'wife_id', 'manager_id'] as $field) {
-            DB::table('couples')->where($field, $oldUserId)->update([
-                $field => $replacementUserId,
+            DB::table('couples')->where($field, $oldAnimalId)->update([
+                $field => $replacementAnimalId,
             ]);
         }
     }
 
     /**
-     * Get User list based on gender.
+     * Get Animal list based on gender.
      *
      * @param int $genderId
      *
@@ -235,21 +235,21 @@ class AnimalController extends Controller
     }
 
     /**
-     * Get marriage list of a user.
+     * Get marriage list of a animal.
      *
-     * @param \App\User $user
+     * @param \App\Animal $animal
      *
      * @return array
      */
-    private function getUserMariageList(Animal $user)
+    private function getAnimalMariageList(Animal $animal)
     {
-        $usersMariageList = [];
+        $animalsMariageList = [];
 
-        foreach ($user->couples as $spouse) {
-            $usersMariageList[$spouse->pivot->id] = $user->name.' & '.$spouse->name;
+        foreach ($animal->couples as $spouse) {
+            $animalsMariageList[$spouse->pivot->id] = $animal->name.' & '.$spouse->name;
         }
 
-        return $usersMariageList;
+        return $animalsMariageList;
     }
 
     /**

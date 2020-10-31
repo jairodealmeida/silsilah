@@ -4,7 +4,7 @@
 
 <div class="row">
  <div class="col-sm-8 offset-sm-2">
-    <h1 class="display-3">Adicionar Raça</h1>
+    <h1 class="display-3">Adicionar País</h1>
   <div>
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -15,25 +15,11 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('races.store') }}">
+      <form method="post" action="{{ route('countries.store') }}">
           @csrf
           <div class="form-group">    
               <label for="name">Nome:</label>
               <input type="text" class="form-control" name="name"/>
-          </div>
-
-          <div class="form-group">
-              <label for="specie">Espécie:</label>
-              <input type="text" class="form-control" name="specie"/>
-          </div>
-
-          <div class="form-group">
-              <label for="genotype">Genotipo:</label>
-              <input type="text" class="form-control" name="genotype"/>
-          </div>
-          <div class="form-group">
-              <label for="origin">Origem:</label>
-              <input type="text" class="form-control" name="origin"/>
           </div>
           <div class="form-group">
               <label for="description">Descrição:</label>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-sm-8 offset-sm-2">
-        <h1 class="display-3">Update a race</h1>
+        <h1 class="display-3">Alterar Raça</h1>
 
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -20,29 +20,29 @@
             @csrf
             <div class="form-group">
 
-                <label for="name">Name:</label>
+                <label for="name">Nome:</label>
                 <input type="text" class="form-control" name="name" value={{ $race->name }} />
             </div>
 
             <div class="form-group">
-                <label for="specie">specie:</label>
+                <label for="specie">Espécie:</label>
                 <input type="text" class="form-control" name="specie" value={{ $race->specie }} />
             </div>
 
             <div class="form-group">
-                <label for="genotype">genotype:</label>
+                <label for="genotype">Genotipo:</label>
                 <input type="text" class="form-control" name="genotype" value={{ $race->genotype }} />
             </div>
             <div class="form-group">
-                <label for="origin">origin:</label>
+                <label for="origin">Origem:</label>
                 <input type="text" class="form-control" name="origin" value={{ $race->origin }} />
             </div>
             <div class="form-group">
-                <label for="description">description:</label>
+                <label for="description">Descrição:</label>
                 <input type="text" class="form-control" name="description" value={{ $race->description }} />
             </div>
             
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
     </div>
 </div>
