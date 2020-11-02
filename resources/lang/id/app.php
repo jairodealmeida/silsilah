@@ -14,7 +14,7 @@ return [
     'child_count' => 'Child Count',
     'grand_child_count' => 'Contagem de netos',
     'user_found' => '<strong>: total </strong> encontrado com a palavra-chave: <strong>: palavra-chave </strong>',
-    'search_your_family' => 'Encontre sua família',
+    'search_your_family' => 'Encontre a ninhada',
     'search_your_family_placeholder' => 'Digite o nome / apelido ... clique em Pesquisar',
     'example' => 'Exemplo.',
     'address' => 'Endereço',
@@ -22,7 +22,7 @@ return [
     'city' => 'Cidade',
     'phone' => 'Telefone',
     'login_account' => 'Conta de acesso',
-    'childs_were_not_recorded' => 'Crianças não foram gravadas.',
+    'childs_were_not_recorded' => 'Nenhum filhote(s) registrado(s).',
 
     // Ações
     'edit' => 'Editar',
@@ -63,7 +63,8 @@ return [
     'animals'  => 'Animais',
     'record_animals'  => 'Cadastrar animais',
     
-
-
+    'countries' => 'Paises',
+    'species' => 'Espécies',
+    'genotypes' => 'Genótipos',
 
 ];

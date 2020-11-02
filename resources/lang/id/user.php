@@ -2,9 +2,9 @@
 
 return [
     // Labels
-    'family'       => 'Família',
+    'family'       => 'Ninhada',
     'profile'      => 'Perfil',
-    'spouse'       => 'Cônjuge',
+    'spouse'       => 'Avôs',
     'wife'         => 'Femea (Mamãe)',
     'husband'      => 'Macho (Papai)',
     'childs'       => 'Filhotes',
@@ -26,7 +26,7 @@ return [
     'set_father'                      => 'Definir pai',
     'set_mother'                      => 'Definir mãe',
     'set_parent'                      => 'Definir pais',
-    'add_spouse'                      => 'Adicionar cônjuge',
+    'add_spouse'                      => 'Adicionar avôs',
     'add_wife'                        => 'Adicionar femea mamãe',
     'add_husband'                     => 'Adicionar macho papai',
     'add_child'                       => 'Adicionar filhote',
@@ -38,7 +38,7 @@ return [
     'gender'   => 'Genero',
     'father'   => 'Papai',
     'mother'   => 'Mamãe',
-    'parent'   => 'Cônjuge',
+    'parent'   => 'Avôs',
     'dob'      => 'Data de nascimento',
     'yob'      => 'Ano de nascimento',
     'dod'      => 'Data de falecimento',

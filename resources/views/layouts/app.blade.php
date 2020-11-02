@@ -18,6 +18,7 @@
         margin-top: 0px;
     }
     </style>
+    
 </head>
 <body>
     <div id="app">
@@ -47,5 +48,6 @@
         }
         $('title').prepend(str+" - ");
     </script>
+    
 </body>
 </html>

@@ -9,7 +9,7 @@ use App\Couple;
 use Illuminate\Http\Request;
 use App\Http\Requests\Animal\UpdateRequest;
 
-class AnimalController extends Controller
+class AnimalsController extends Controller
 {
     /**
      * Search animal by keyword.
@@ -32,7 +32,49 @@ class AnimalController extends Controller
 
         return view('animals.search', compact('animals'));
     }
+  
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $animals = Animal::all();
 
+        return view('animals.index', compact('animals'));
+    }
+ /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('animals.create');
+    }
+
+     /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return User
+     */
+    protected function register(array $data)
+    {
+        $animal = Animals::create([
+            'id' => Uuid::uuid4()->toString(),
+            'nickname' => $data['nickname'],
+            'name' => $data['name'],
+            'gender_id' => $data['gender_id'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
+        $animal->manager_id = $animal->id;
+        $animal->save();
+
+        return $animal;
+    }
     /**
      * Display the specified Animal.
      *

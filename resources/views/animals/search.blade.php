@@ -1,47 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-@if (Auth::user())
 <h2 class="page-header">
     {{ trans('app.search_your_family') }}
     @if (request('q'))
     <small class="pull-right">{!! trans('app.user_found', ['total' => $users->total(), 'keyword' => request('q')]) !!}</small>
     @endif
 </h2>
+
+
 {{ Form::open(['method' => 'get','class' => '']) }}
 <div class="input-group">
-
     {{ Form::text('q', request('q'), ['class' => 'form-control', 'placeholder' => trans('app.search_your_family_placeholder')]) }}
     <span class="input-group-btn">
         {{ Form::submit(trans('app.search'), ['class' => 'btn btn-default']) }}
         {{ link_to_route('users.search', 'Reset', [], ['class' => 'btn btn-default']) }}
     </span>
-
 </div>
 {{ Form::close() }}
-
-@else
-<div class="text-center bg-light">
-      <div class="col-md-6 p-lg-6">
-        <h1 class="display-4 font-weight-normal">Publique seus Pedigrees</h1>
-        <p class="lead font-weight-normal">Sistema pra gerenciamento de pedgrees, pode permitir adicionar novas raças genotipos e mais.</p>
-      </div>
-      <div class="col-md-6 p-lg-6">
-          <h1 class="display-5">Arvore genealogica</h1>
-          <p class="lead font-weight-normal">Acomopanhe o processo de ninhadas pela funcionalidade de mapeamento genealógico.</p>
-       </div>
-       <div class="col-md-12 p-lg-12">
-       <img src="images/logo.jpeg" style = "width:500px;heigth:auto" alt="">
-       </div>
-       <div class="col-md-12 p-lg-12">
-          <h1 class="display-5">Painel administrativo</h1>
-          <p class="lead font-weight-normal">Gerencie seus parceiros e nucleos de emição de pedrigree pela nossa ferramenta.</p>
-       </div>
-</div>
-
-    
-
-@endif      
 
 @if (request('q'))
 <br>

@@ -91,7 +91,18 @@ Route::delete('genotypes/{genotype}', 'GenotypeController@destroy')->name('genot
 Route::get('creators', 'CreatorsController@index')->name('creators.index');
 
 Route::get('animals', 'AnimalsController@index')->name('animals.index');
-
+Route::post('animals/register', ['as' => 'animals.register', 'animals' => 'AnimalsController@register']);
+Route::get('animals/create', 'AnimalsController@create')->name('animals.create');
+Route::get('animals-profile-search', 'AnimalsController@search')->name('animals.search');
+Route::get('animals/{animal}', 'AnimalsController@show')->name('animals.show');
+Route::get('animals/{animal}/edit', 'AnimalsController@edit')->name('animals.edit');
+Route::patch('animals/{animal}', 'AnimalsController@update')->name('animals.update');
+Route::get('animals/{animal}/chart', 'AnimalsController@chart')->name('animals.chart');
+Route::get('animals/{animal}/tree', 'AnimalsController@tree')->name('animals.tree');
+Route::patch('animals/{animal}/photo-upload', 'AnimalsController@photoUpload')->name('animals.photo-upload');
+Route::delete('animals/{animal}', 'AnimalsController@destroy')->name('animals.destroy');
+Route::get('animals/{animal}/marriages', 'AnimalsMarriagesController@index')->name('animals.marriages');
+Route::get('animals/birthdays', 'AnimalsBirthdayController@index')->name('animals.birthdays.index');
 
 /**
  * Admin only routes

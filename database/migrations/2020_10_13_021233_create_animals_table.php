@@ -26,7 +26,7 @@ class CreateAnimalsTable extends Migration
             $table->unsignedTinyInteger('birth_order')->nullable();
             $table->date('dod')->nullable();
             $table->year('yod')->nullable();
-            $table->string('email')->unique()->nullable();
+            $table->string('email')->nullable();
             $table->string('password')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();

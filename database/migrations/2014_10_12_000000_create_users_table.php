@@ -35,6 +35,7 @@ class CreateUsersTable extends Migration
             $table->uuid('manager_id')->nullable();
             $table->rememberToken();
             $table->boolean('admin')->default(0)->change();
+            $table->string('usertype')->default('NUCLEO')->change();
             $table->timestamps();
         });
     }

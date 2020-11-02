@@ -9,7 +9,7 @@ return [
     'throttle'                  => 'Muitas tentativas de login. Por favor tente em :seconds segundos.',
     'email'                     => 'E-mail',
     'password'                  => 'Senha',
-    'login'                     => 'Acessar',
+    'login'                     => 'Acessar conta',
     'logout'                    => 'Sair',
     'back'                      => 'Voltar',
     'register'                  => 'Criar nova conta',
