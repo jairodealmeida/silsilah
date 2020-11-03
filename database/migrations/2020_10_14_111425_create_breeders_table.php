@@ -15,12 +15,6 @@ class CreateBreedersTable extends Migration
     {
         Schema::create('breeders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->nullable();;
-            $table->string('address');
-            $table->string('city');
-            $table->string('state');
-            $table->string('email');
-            $table->string('phones');
             $table->integer('broodtotal');
             $table->date('certifyduedate');
             $table->string('aliastype');

@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">{{ trans('user.name') }}</label>
+                            <label for="name" class="col-md-4 control-label">{{ trans('user.name_responsable') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required>
@@ -52,13 +52,49 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('gender_id') ? ' has-error' : '' }}">
-                            <label for="gender_id" class="col-md-4 control-label">{{ trans('user.gender') }}</label>
+                        <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+                            <label for="description" class="col-md-4 control-label">{{ trans('user.description') }}</label>
 
                             <div class="col-md-6">
-                                {!! FormField::radios('gender_id', [1 => trans('app.male'), 2 => trans('app.female')], ['label' => false]) !!}
+                                <textarea id="description" name="description" class="form-control" required >Entre com uma descrição...</textarea>
+                                @if ($errors->has('description'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
+                        
+
+                        <div class="form-group{{ $errors->has('duedate') ? ' has-error' : '' }}">
+                            <label for="duedate" class="col-md-4 control-label">{{ trans('user.duedate') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="duedate" type="datetime-local" class="form-control" name="duedate" value="{{ old('duedate') }}" required>
+                                
+                                @if ($errors->has('duedate'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('duedate') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        
+                        <div class="form-group{{ $errors->has('registerquote') ? ' has-error' : '' }}">
+                            <label for="registerquote" class="col-md-4 control-label">{{ trans('user.registerquote') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="number" id="registerquote" name="registerquote" min="1" value="120" max="99999" required>
+
+                                @if ($errors->has('registerquote'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('registerquote') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        
+
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">{{ trans('auth.password') }}</label>

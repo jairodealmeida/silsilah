@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Core extends Model
 {
-    //
+    protected $fillable = [
+        'description',
+        'registerquote',
+        'duedate'
+    ];
 }

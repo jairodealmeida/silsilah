@@ -16,8 +16,8 @@ class CreateCoresTable extends Migration
         Schema::create('cores', function (Blueprint $table) {
             $table->increments('id');
             $table->string('description');
-            $table->integer('regiterquote');
-            $table->uuid('proprietary');
+            $table->integer('registerquote');
+            $table->date('duedate');
             $table->timestamps();
         });
     }

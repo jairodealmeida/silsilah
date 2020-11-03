@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class BirthdayController extends Controller
@@ -18,7 +19,7 @@ class BirthdayController extends Controller
     {
         $birthdayDateRaw = "concat(YEAR(CURDATE()), '-', RIGHT(dob, 5)) as birthday_date";
 
-        $userBirthdayQuery = User::whereNotNull('dob')
+        $userBirthdayQuery = User::whereNotNull('dob')->whereNotNull('animal_id')->where('core_id', '=' , Auth::user()->core_id)
             ->select('users.name', 'users.dob', 'users.id as user_id', DB::raw($birthdayDateRaw))
             ->orderBy('birthday_date', 'asc')
             ->havingBetween('birthday_date', [today()->format('Y-m-d'), today()->addDays(60)->format('Y-m-d')]);

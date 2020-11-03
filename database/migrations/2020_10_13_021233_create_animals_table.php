@@ -14,30 +14,11 @@ class CreateAnimalsTable extends Migration
     public function up()
     {
         Schema::create('animals', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nickname');
-            $table->string('name')->nullable();
-            $table->boolean('gender_id')->unsigned();
-            $table->uuid('father_id')->nullable();
-            $table->uuid('mother_id')->nullable();
-            $table->uuid('parent_id')->nullable();
-            $table->date('dob')->nullable();
-            $table->year('yob')->nullable();
-            $table->unsignedTinyInteger('birth_order')->nullable();
-            $table->date('dod')->nullable();
-            $table->year('yod')->nullable();
-            $table->string('email')->nullable();
-            $table->string('password')->nullable();
-            $table->string('address')->nullable();
-            $table->string('city')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('photo_path')->nullable();
-            $table->uuid('manager_id')->nullable();
-
+            $table->uuid('id')->primary();
             $table->uuid('race_id')->nullable();
-            $table->uuid('proprietary');
-
-            $table->rememberToken();
+            $table->string('proprietary')->nullable();
+            $table->uuid('pedigree_id')->nullable();
+            $table->uuid('core_id')->nullable();
             $table->timestamps();
         });
     }

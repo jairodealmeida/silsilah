@@ -3,8 +3,10 @@
 @section('subtitle', trans('user.marriages'))
 
 @section('user-content')
-
 <div class="row">
+    Em desenvolvimento! 
+</div>
+<!--div class="row">
     @foreach ($marriages as $marriage)
     <div class="col-md-4">
         <div class="panel panel-default">
@@ -24,5 +26,5 @@
         </div>
     </div>
     @endforeach
-</div>
+</div-->
 @endsection

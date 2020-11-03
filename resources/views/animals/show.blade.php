@@ -1,40 +1,38 @@
-@extends('layouts.user-profile')
+@extends('layouts.app')
 
-@section('subtitle', trans('user.profile'))
-
-@section('user-content')
-    <div class="row">
-        <div class="col-md-4">
-            @include('users.partials.profile')
-        </div>
-        <div class="col-md-8">
-            @include('users.partials.parent-spouse')
-            @include('users.partials.childs')
-            @include('users.partials.siblings')
-        </div>
+@section('content')
+@can('edit', $animal)
+    <div class="pull-right">
+        {{ link_to_route('animals.edit', trans('animal.edit'), $animal, ['class' => 'btn btn-warning']) }}
     </div>
-@endsection
+@endcan
+<h2 class="page-header">
+    {{ $animal->husband->name }} & {{ $animal->wife->name }} <small>{{ trans('animal.detail') }}</small>
+</h2>
 
-@section ('ext_css')
-<link rel="stylesheet" href="{{ asset('css/plugins/select2.min.css') }}">
-<link rel="stylesheet" href="{{ asset('css/plugins/jquery.datetimepicker.css') }}">
-@endsection
-
-@section ('ext_js')
-<script src="{{ asset('js/plugins/select2.min.js') }}"></script>
-<script src="{{ asset('js/plugins/jquery.datetimepicker.js') }}"></script>
-@endsection
-
-@section ('script')
-<script>
-(function () {
-    $('select').select2();
-    $('input[name=marriage_date]').datetimepicker({
-        timepicker:false,
-        format:'Y-m-d',
-        closeOnDateSelect: true,
-        scrollInput: false
-    });
-})();
-</script>
+@include('animals.partials.stat')
+<br>
+<h4 class="page-header">{{ trans('user.childs') }} & {{ trans('user.grand_childs') }}</h4>
+@if ($animal->childs->isEmpty())
+    <i>{{ trans('app.childs_were_not_recorded') }}</i>
+@else
+    <?php $no = 0; ?>
+    @foreach($animal->childs->chunk(4) as $chunkedChild)
+    <div class="row">
+        @foreach($chunkedChild as $child)
+        <div class="col-md-3">
+            <h4><strong>{{ ++$no }}. {{ $child->profileLink() }} ({{ $child->gender }})</strong></h4>
+            <ul style="padding-left: 35px">
+                @foreach($child->childs as $grand)
+                <li>{{ $grand->profileLink() }} ({{ $grand->gender }})</li>
+                @endforeach
+            </ul>
+        </div>
+        @endforeach
+        @if (! $loop->last)
+        <div class="clearfix"></div><hr>
+        @endif
+    </div>
+    @endforeach
+@endif
 @endsection

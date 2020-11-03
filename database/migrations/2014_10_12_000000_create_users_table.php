@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->uuid('id')->primary();
             $table->string('nickname');
             $table->string('name')->nullable();
-            $table->boolean('gender_id')->unsigned();
+            $table->boolean('gender_id')->default(0)->unsigned();
             $table->uuid('father_id')->nullable();
             $table->uuid('mother_id')->nullable();
             $table->uuid('parent_id')->nullable();
@@ -35,7 +35,9 @@ class CreateUsersTable extends Migration
             $table->uuid('manager_id')->nullable();
             $table->rememberToken();
             $table->boolean('admin')->default(0)->change();
-            $table->string('usertype')->default('NUCLEO')->change();
+            $table->uuid('breeder_id')->nullable();
+            $table->uuid('animal_id')->nullable();
+            $table->uuid('core_id')->nullable();
             $table->timestamps();
         });
     }

@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
 <div class="col-sm-12">
-    <h1 class="display-3">Animais cadastrados</h1>  
+    <h1 class="display-3">Pets cadastrados</h1>  
     <div>
     <a style="margin: 19px;" href="{{ route('animals.create')}}" class="btn btn-primary">Cadastrar</a>
     </div>    
@@ -26,19 +26,21 @@
     <tbody>
         @forelse($animals as $animal)
         <tr>
-            <td>{{$animal->id}}</td>
+          
+            <td>{{''}}</td>
             <td>{{$animal->name}}</td>
             <td>{{$animal->nickname}} </td>
             <td>{{$animal->gender}} </td>
-            <td>{{$animal->father}} </td>
-            <td>{{$animal->mother}} </td>
-            <td>{{$animal->childs_count}} </td>
+            <td>{{$animal->father!=null ? $animal->father->name : '' }} </td>
+            <td>{{$animal->mother!=null ? $animal->mother->name : '' }} </td>
+            <td>{{$animal->core_id}} </td>
             <td>{{$animal->spouses_count}} </td>
             <td>{{$animal->managed_user}} </td>
             <td>{{$animal->managed_couple}} </td>
 
             <td>
-                <a href="{{ route('animals.edit',$animal->id)}}" class="btn btn-primary">Editar</a>
+              {{ link_to_route('users.edit', trans('app.edit'), [$animal->id], ['class' => 'btn btn-warning']) }}
+               
             </td>
             <td>
                 <form action="{{ route('animals.destroy', $animal->id)}}" method="post">

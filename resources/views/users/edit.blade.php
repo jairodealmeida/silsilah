@@ -91,8 +91,8 @@
                 <div class="panel-heading"><h3 class="panel-title">{{ __('app.address') }} &amp; {{ __('app.contact') }}</h3></div>
                 <div class="panel-body">
                     {!! FormField::textarea('address', ['label' => __('app.address')]) !!}
-                    {!! FormField::text('city', ['label' => __('app.city'), 'placeholder' => __('app.example').' Jakarta']) !!}
-                    {!! FormField::text('phone', ['label' => __('app.phone'), 'placeholder' => __('app.example').' 081234567890']) !!}
+                    {!! FormField::text('city', ['label' => __('app.city'), 'placeholder' => __('app.example').' Assis, São Paulo']) !!}
+                    {!! FormField::text('phone', ['label' => __('app.phone'), 'placeholder' => __('app.example').' 018996619813']) !!}
                 </div>
             </div>
             <div class="panel panel-default">
@@ -112,7 +112,7 @@
                     {{ userPhoto($user, ['style' => 'width:100%;max-width:300px']) }}
                 </div>
                 <div class="panel-body">
-                    {!! FormField::file('photo', ['required' => true, 'label' => __('user.reupload_photo'), 'info' => ['text' => 'Format jpg, maks: 200 Kb.', 'class' => 'warning']]) !!}
+                    {!! FormField::file('photo', ['required' => true, 'label' => __('user.reupload_photo'), 'info' => ['text' => 'Formato jpg, tamanho mínimo: 200 Kb.', 'class' => 'warning']]) !!}
                 </div>
                 <div class="panel-footer">
                     {!! Form::submit(__('user.update_photo'), ['class' => 'btn btn-success']) !!}

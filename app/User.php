@@ -31,12 +31,29 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'birth_order',
-        'nickname', 'gender_id', 'name',
-        'email', 'password',
-        'address', 'phone',
-        'dob', 'yob', 'dod', 'yod', 'city',
-        'father_id', 'mother_id', 'parent_id',
+        'id', 
+        'nickname', 
+        'name',
+        'gender_id', 
+        'father_id', 
+        'mother_id', 
+        'parent_id',
+        'dob', 
+        'yob', 
+        'birth_order',
+        'dod', 
+        'yod', 
+        'email', 
+        'password',
+        'address', 
+        'city',
+        'phone',
+        'phone_path',
+        'manager_id',
+        'admin',
+        'breeder_id',
+        'animal_id',
+        'core_id',
     ];
 
     /**
@@ -194,6 +211,17 @@ class User extends Authenticatable
 
         return $this->hasMany(Couple::class, 'wife_id')->orderBy('marriage_date');
     }
+
+
+    public function pedigree()
+    {
+        if ($this->gender_id == 1) {
+            return $this->hasMany(Couple::class, 'husband_id')->orderBy('marriage_date');
+        }
+
+        return $this->hasMany(Couple::class, 'wife_id')->orderBy('marriage_date');
+    }
+
 
     public function siblings()
     {

@@ -8,6 +8,7 @@ use App\User;
 use App\Couple;
 use Illuminate\Http\Request;
 use App\Http\Requests\Users\UpdateRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -22,10 +23,18 @@ class UsersController extends Controller
         $users = [];
 
         if ($q) {
+            //$animals = User::whereNotNull('animal_id')->
+            //        where('core_id', '=' , Auth::user()->core_id)->
+            //        get();
+            
             $users = User::with('father', 'mother')->where(function ($query) use ($q) {
+                //$query->where('name', 'like', '%'.$q.'%');
+                //$query->orWhere('nickname', 'like', '%'.$q.'%');
+                
                 $query->where('name', 'like', '%'.$q.'%');
                 $query->orWhere('nickname', 'like', '%'.$q.'%');
-            })
+                
+            })->whereNotNull('animal_id')->where('core_id', '=' , Auth::user()->core_id)
                 ->orderBy('name', 'asc')
                 ->paginate(24);
         }

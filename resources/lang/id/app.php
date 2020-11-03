@@ -40,6 +40,13 @@ return [
     'delete' => 'Delete',
     'cancel' => 'Cancelar',
 
+    'show_pedigree' => 'Emitir Pedigree',
+
+    'animal_nickname' => 'Nome do Pet',
+    'animal_name' => 'Nome completo',
+    'animal_gender' => 'Gênero do mascote',
+    'pets' => 'Pets',
+
 
 
     'description' => 'Descrição',
