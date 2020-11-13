@@ -107,3 +107,33 @@ Feel free to submit Issue for bugs or sugestions and Pull Request.
 ## License
 
 Silsilah project is open-sourced software licensed under the [MIT license](LICENSE).
+
+
+
+Anotações Heroku
+php artisan serve
+heroku login
+php -v
+composer -V
+git --version
+heroku create
+git add .
+git commit -m "coment"
+git push origin master
+git pull
+git push heroku master
+heroku ps:scale web=1
+heroku config:set APP_DEBUG=true
+heroku config:set APP_KEY=RandomString
+heroku config:set APP_KEY=$(php artisan --no-ansi key:generate --show)
+heroku php artisan migrate
+heroku $(php artisan migrate)
+heroku config | grep CLEARDB_DATABASE_URL
+heroku config $(grep CLEARDB_DATABASE_URL)
+heroku run php /app/artisan migrate
+heroku open
+heroku logs --tail
+heroku run bash -a rocky-fjord-74337
+exit
+
+heroku run php artisan storage:link
