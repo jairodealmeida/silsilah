@@ -58,11 +58,20 @@
                 @endif
             </div>
             <div class="panel-body">
-                <h3 class="panel-title">{{ $user->profileLink() }} ({{ $user->gender }})</h3>
-                <div>{{ trans('user.nickname') }} : {{ $user->nickname }}</div>
-                <hr style="margin: 5px 0;">
-                <div>{{ trans('user.father') }} : {{ $user->father_id ? $user->father->name : '' }}</div>
-                <div>{{ trans('user.mother') }} : {{ $user->mother_id ? $user->mother->name : '' }}</div>
+                
+                @if ($user->core_id)
+                    <h3 class="panel-title">{{ $user->profileLink() }} </h3>
+                    <div>{{ trans('user.name') }} : {{ $user->nickname }}</div>
+                    <hr style="margin: 5px 0;">
+                    <div>{{ trans('user.core') }}</div>
+                @else
+                    <h3 class="panel-title">{{ $user->profileLink() }} ({{ $user->gender }})</h3>
+                    <div>{{ trans('user.nickname') }} : {{ $user->nickname }}</div>
+                    <hr style="margin: 5px 0;">
+                    <div>{{ trans('user.father') }} : {{ $user->father_id ? $user->father->name : '' }}</div>
+                    <div>{{ trans('user.mother') }} : {{ $user->mother_id ? $user->mother->name : '' }}</div>
+                @endif
+
             </div>
             <div class="panel-footer">
                 {{ link_to_route('users.show', trans('app.show_profile'), [$user->id], ['class' => 'btn btn-default btn-xs']) }}

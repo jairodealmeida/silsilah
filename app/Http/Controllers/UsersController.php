@@ -21,22 +21,26 @@ class UsersController extends Controller
     {
         $q = $request->get('q');
         $users = [];
-
+       
         if ($q) {
-            //$animals = User::whereNotNull('animal_id')->
-            //        where('core_id', '=' , Auth::user()->core_id)->
-            //        get();
-            
+            print($q);
             $users = User::with('father', 'mother')->where(function ($query) use ($q) {
-                //$query->where('name', 'like', '%'.$q.'%');
-                //$query->orWhere('nickname', 'like', '%'.$q.'%');
-                
                 $query->where('name', 'like', '%'.$q.'%');
                 $query->orWhere('nickname', 'like', '%'.$q.'%');
-                
-            })->whereNotNull('animal_id')->where('core_id', '=' , Auth::user()->core_id)
-                ->orderBy('name', 'asc')
-                ->paginate(24);
+            })
+            //->whereNotNull('animal_id')
+            //->where('core_id', '=' , Auth::user()->core_id)
+            ->orderBy('name', 'asc')
+            ->paginate(24);
+        }else{
+            $q = "";
+            print($q);
+            $users = User::with('father', 'mother')->where(function ($query) use ($q) {
+                $query->where('name', 'like', '%'.$q.'%');
+                $query->orWhere('nickname', 'like', '%'.$q.'%');
+            })
+            ->orderBy('name', 'asc')
+            ->paginate(24);
         }
 
         return view('users.search', compact('users'));
