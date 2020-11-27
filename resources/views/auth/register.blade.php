@@ -56,7 +56,7 @@
                             <label for="description" class="col-md-4 control-label">{{ trans('user.description') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="description" name="description" class="form-control" required >Entre com uma descrição...</textarea>
+                                <textarea id="description" name="description" class="form-control" required ></textarea>
                                 @if ($errors->has('description'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('description') }}</strong>
@@ -66,7 +66,7 @@
                         </div>
                         
 
-                        <div class="form-group{{ $errors->has('duedate') ? ' has-error' : '' }}">
+                        <!--div class="form-group{{ $errors->has('duedate') ? ' has-error' : '' }}">
                             <label for="duedate" class="col-md-4 control-label">{{ trans('user.duedate') }}</label>
 
                             <div class="col-md-6">
@@ -78,9 +78,9 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div-->
                         
-                        <div class="form-group{{ $errors->has('registerquote') ? ' has-error' : '' }}">
+                        <!--div class="form-group{{ $errors->has('registerquote') ? ' has-error' : '' }}">
                             <label for="registerquote" class="col-md-4 control-label">{{ trans('user.registerquote') }}</label>
 
                             <div class="col-md-6">
@@ -92,7 +92,7 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div-->
                         
 
 

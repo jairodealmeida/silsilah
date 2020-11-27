@@ -25,7 +25,25 @@
               <label for="description">Descrição:</label>
               <input type="text" class="form-control" name="description"/>
           </div>
-                     
+
+          <div class="form-group">
+            <!--label for="description">Classe:</label>
+            <input type="text" class="form-control" name="description"/-->
+            <label for="classes">Classe:</label>
+
+            <select name="classes" id="classes">
+              <option value="volvo">Mamíferos</option>
+              <option value="saab">Aves</option>
+              <option value="mercedes">Répteis</option>
+              <option value="audi">Anfíbios</option>
+              <option value="audi">Peixes</option>
+              <option value="audi">Invertebrados</option>
+            </select>
+
+          </div>  
+
+          
+
           <button type="submit" class="btn btn-primary-outline">Salvar</button>
       </form>
   </div>

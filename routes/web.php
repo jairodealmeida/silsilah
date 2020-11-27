@@ -102,6 +102,15 @@ Route::patch('animals/{animal}', 'AnimalsController@update')->name('animals.upda
 Route::delete('animals/{animal}', 'AnimalsController@destroy')->name('animals.destroy');
 
 
+
+Route::get('cores', 'CoreController@index')->name('cores.index');
+Route::get('cores/create', 'CoreController@create')->name('cores.create');
+Route::post('cores', 'CoreController@store')->name('cores.store');
+Route::get('cores/{core}', 'CoreController@show')->name('cores.show');
+Route::get('cores/{core}/edit', 'CoreController@edit')->name('cores.edit');
+Route::patch('cores/{core}', 'CoreController@update')->name('cores.update');
+Route::delete('cores/{core}', 'CoreController@destroy')->name('cores.destroy');
+
 /**
  * Admin only routes
  */

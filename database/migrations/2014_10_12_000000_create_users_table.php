@@ -34,7 +34,7 @@ class CreateUsersTable extends Migration
             $table->string('photo_path')->nullable();
             $table->uuid('manager_id')->nullable();
             $table->rememberToken();
-            $table->boolean('admin')->default(0)->change();
+            $table->boolean('admin')->default(0);
             $table->uuid('breeder_id')->nullable();
             $table->uuid('animal_id')->nullable();
             $table->uuid('core_id')->nullable();

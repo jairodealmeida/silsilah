@@ -12,7 +12,7 @@ return [
     'siblings'     => 'Irmãos',
     'dead'         => 'Falecidos',
     'child_name'   => 'Nome do filhote',
-    'child_gender' => 'Genero do filhote',
+    'child_gender' => 'Sexo do filhote',
     'grand_mother' => 'Avó',
     'grand_father' => 'Avô',
     'nieces'       => 'Sobrinhos',
@@ -20,6 +20,8 @@ return [
     'birth_order'  => 'Ordem de nascimento',
     'age'          => 'Idade',
     'age_years'    => 'year|years',
+    'description' => 'Descrição',
+    'name_responsable' => 'Nome do responsável',
 
     // Actions
     'edit'                            => 'Editar perfil',
@@ -35,7 +37,7 @@ return [
     // Attributes
     'name'     => 'Nome',
     'nickname' => 'Apelido',
-    'gender'   => 'Genero',
+    'gender'   => 'Sexo',
     'father'   => 'Papai',
     'mother'   => 'Mamãe',
     'parent'   => 'Avôs',

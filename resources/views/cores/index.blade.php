@@ -3,9 +3,9 @@
 @section('content')
 <div class="row">
 <div class="col-sm-12">
-    <h1 class="display-3">Pets cadastrados</h1>  
+    <h1 class="display-3">{{ trans('app.record_cores') }}</h1>  
     <div>
-    <a style="margin: 19px;" href="{{ route('animals.create')}}" class="btn btn-primary">Cadastrar</a>
+    <a style="margin: 19px;" href="{{ route('cores.create')}}" class="btn btn-primary">Cadastrar</a>
     </div>    
   <table class="table table-striped">
     <thead>
@@ -24,26 +24,26 @@
         </tr>
     </thead>
     <tbody>
-        @forelse($animals as $animal)
+        @forelse($cores as $core)
         <tr>
           
             <td>{{''}}</td>
-            <td>{{$animal->name}}</td>
-            <td>{{$animal->nickname}} </td>
-            <td>{{$animal->gender}} </td>
-            <td>{{$animal->father!=null ? $animal->father->name : '' }} </td>
-            <td>{{$animal->mother!=null ? $animal->mother->name : '' }} </td>
-            <td>{{$animal->core_id}} </td>
-            <td>{{$animal->spouses_count}} </td>
-            <td>{{$animal->managed_user}} </td>
-            <td>{{$animal->managed_couple}} </td>
+            <td>{{$core->name}}</td>
+            <td>{{$core->nickname}} </td>
+            <td>{{$core->gender}} </td>
+            <td>{{$core->father!=null ? $core->father->name : '' }} </td>
+            <td>{{$core->mother!=null ? $core->mother->name : '' }} </td>
+            <td>{{$core->core_id}} </td>
+            <td>{{$core->spouses_count}} </td>
+            <td>{{$core->managed_user}} </td>
+            <td>{{$core->managed_couple}} </td>
 
             <td>
-              {{ link_to_route('users.edit', trans('app.edit'), [$animal->id], ['class' => 'btn btn-warning']) }}
+              {{ link_to_route('users.edit', trans('app.edit'), [$core->id], ['class' => 'btn btn-warning']) }}
                
             </td>
             <td>
-                <form action="{{ route('animals.destroy', $animal->id)}}" method="post">
+                <form action="{{ route('cores.destroy', $core->id)}}" method="post">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit">Remover</button>

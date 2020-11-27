@@ -66,21 +66,22 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         //printf($data);
-        $core = Core::create([
+        /*$core = Core::create([
             'id' => Uuid::uuid4()->toString(),
             'duedate' => $data['duedate'],
             'description' => $data['description'],
             'registerquote' => $data['registerquote']
         ]);
-        $core->save();
+        $core->save();*/
+        
         $user = User::create([
             'id' => Uuid::uuid4()->toString(),
             'nickname' => $data['nickname'],
             'name' => $data['name'],
             //'gender_id' => $data['gender_id'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'core_id' => $core->id
+            'password' => bcrypt($data['password']) //,
+            //'core_id' => $core->id
         ]);
         $user->manager_id = $user->id;
         $user->save();

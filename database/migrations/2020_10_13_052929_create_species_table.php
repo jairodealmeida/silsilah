@@ -17,6 +17,7 @@ class CreateSpeciesTable extends Migration
             $table->increments('id');
             $table->string('title')->nullable();
             $table->string('description')->nullable();
+            $table->string('classe')->nullable();
             $table->timestamps();
         });
     }

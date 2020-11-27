@@ -13,6 +13,7 @@
           <td>Código</td>
           <td>Título</td>
           <td>Descrição</td>
+          <td>Classe</td>
           <td colspan = 2>Ações</td>
         </tr>
     </thead>
@@ -22,6 +23,7 @@
             <td>{{$specie->id}}</td>
             <td>{{$specie->title}}</td>
             <td>{{$specie->description}} </td>
+            <td>{{$specie->classe}} </td>
             <td>
                 <a href="{{ route('species.edit',$specie->id)}}" class="btn btn-primary">Editar</a>
             </td>

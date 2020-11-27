@@ -15,7 +15,7 @@ class CreateCoresTable extends Migration
     {
         Schema::create('cores', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->integer('registerquote');
             $table->date('duedate');
             $table->timestamps();

@@ -1,23 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-@can('edit', $specie)
+@can('edit', $core)
     <div class="pull-right">
-        {{ link_to_route('species.edit', trans('specie.edit'), $specie, ['class' => 'btn btn-warning']) }}
+        {{ link_to_route('cores.edit', trans('core.edit'), $core, ['class' => 'btn btn-warning']) }}
     </div>
 @endcan
 <h2 class="page-header">
-    {{ $specie->husband->name }}  <small>{{ trans('specie.detail') }}</small>
+    {{ $core->husband->name }} & {{ $core->wife->name }} <small>{{ trans('core.detail') }}</small>
 </h2>
 
-@include('species.partials.stat')
+@include('cores.partials.stat')
 <br>
 <h4 class="page-header">{{ trans('user.childs') }} & {{ trans('user.grand_childs') }}</h4>
-@if ($specie->childs->isEmpty())
+@if ($core->childs->isEmpty())
     <i>{{ trans('app.childs_were_not_recorded') }}</i>
 @else
     <?php $no = 0; ?>
-    @foreach($specie->childs->chunk(4) as $chunkedChild)
+    @foreach($core->childs->chunk(4) as $chunkedChild)
     <div class="row">
         @foreach($chunkedChild as $child)
         <div class="col-md-3">
