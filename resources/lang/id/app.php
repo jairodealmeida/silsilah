@@ -44,7 +44,7 @@ return [
 
     'animal_nickname' => 'Nome do Pet',
     'animal_name' => 'Nome completo',
-    'animal_gender' => 'Gênero do mascote',
+    'animal_gender' => 'Sexo do mascote',
     'pets' => 'Pets',
 
 
@@ -85,4 +85,28 @@ return [
     'cores' => 'Cartórios',
     'record_core' => 'Cadastrar Cartórios',
     'record_cores' => 'Cartórios Cadastrados',
+
+    'races' => 'Raças',
+    'record_races' => 'Raças Cadastradas',
+    'record_race' => 'Cadastrar Raça',
+
+    'record_animal' => 'Cadastrar Animal',
+    'nickname' => 'Apelido',
+    'father_name' => 'Nome do Pai',
+    'mother_name' => 'Nome do Mãe',
+    'proprietary' => 'Proprietário',
+    'couple' => 'Casal',
+    'brooding' => 'Ninhada',
+
+    'id' => 'Código',
+    'actions' => 'Ações',
+    'origin' => 'Origem',
+    'specie' => 'Espécie',
+
+    'no_record_found' => 'Nenhum registro encontrado!',
+
+    'save' => 'Salvar',
+    'delete' => 'Excluir',
+
+
 ];

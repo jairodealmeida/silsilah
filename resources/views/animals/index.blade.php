@@ -3,24 +3,24 @@
 @section('content')
 <div class="row">
 <div class="col-sm-12">
-    <h1 class="display-3">Pets cadastrados</h1>  
+    <h1 class="display-3">{{ trans('app.record_animals') }}</h1>  
     <div>
-    <a style="margin: 19px;" href="{{ route('animals.create')}}" class="btn btn-primary">Cadastrar</a>
+    <a style="margin: 19px;" href="{{ route('animals.create')}}" class="btn btn-primary">{{ trans('app.record_animal') }}</a>
     </div>    
   <table class="table table-striped">
     <thead>
         <tr>
-          <td>Código</td>
-          <td>Nome</td>
-          <td>Apelido</td>
-          <td>Sexo</td>
-          <td>Nome do pai</td>
-          <td>Nome da mãe</td>
-          <td>Ninhada</td>
-          <td>Avôs</td>
-          <td>Proprietário</td>
-          <td>Casal</td>
-          <td colspan = 2>Ações</td>
+          <td>{{ trans('app.id') }}</td>
+          <td>{{ trans('app.name') }}</td>
+          <td>{{ trans('app.nickname') }}</td>
+          <td>{{ trans('app.genotype') }}</td>
+          <td>{{ trans('app.father_name') }}</td>
+          <td>{{ trans('app.mother_name') }}</td>
+          <td>{{ trans('app.brooding') }}</td>
+          <td>{{ trans('app.parents') }}</td>
+          <td>{{ trans('app.proprietary') }}</td>
+          <td>{{ trans('app.couple') }}</td>
+          <td colspan = 2>{{ trans('app.actions') }}</td>
         </tr>
     </thead>
     <tbody>
@@ -46,12 +46,12 @@
                 <form action="{{ route('animals.destroy', $animal->id)}}" method="post">
                   @csrf
                   @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Remover</button>
+                  <button class="btn btn-danger" type="submit">{{ trans('app.delete') }}</button>
                 </form>
             </td>
         </tr>
         @empty
-        <p>Não foi encontrado nenhum cadastro.</p>
+        <p>{{ trans('app.no_record_found') }}</p>
         @endforelse
     </tbody>
   </table>

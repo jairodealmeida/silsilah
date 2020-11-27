@@ -4,7 +4,7 @@
 
 <div class="row">
  <div class="col-sm-8 offset-sm-2">
-    <h1 class="display-3">Cadastrar</h1>
+    <h1 class="display-3">{{ trans('app.record_animal') }}</h1>
   <div>
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -89,7 +89,7 @@
             </div>
         </div-->
                      
-          <button type="submit" class="btn btn-primary-outline">Adicionar</button>
+          <button type="submit" class="btn btn-primary-outline">{{ trans('app.save') }}</button>
       </form>
   </div>
 </div>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-sm-8 offset-sm-2">
-        <h1 class="display-3">Editar País</h1>
+        <h1 class="display-3">{{ trans('app.edit') }}</h1>
 
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -64,7 +64,7 @@
                 <label for="description" class="col-md-4 control-label">{{ trans('user.description') }}</label>
 
                 <div class="col-md-6">
-                    <textarea id="description" name="description" class="form-control" required >Entre com uma descrição...</textarea>
+                    <textarea id="description" name="description" class="form-control" required ></textarea>
                     @if ($errors->has('description'))
                         <span class="help-block">
                             <strong>{{ $errors->first('description') }}</strong>
@@ -106,7 +106,7 @@
 
           
             
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" class="btn btn-primary">{{ trans('app.save') }}</button>
         </form>
     </div>
 </div>

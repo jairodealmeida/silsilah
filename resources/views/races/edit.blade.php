@@ -20,29 +20,29 @@
             @csrf
             <div class="form-group">
 
-                <label for="name">Nome:</label>
+                <label for="name">{{ trans('app.name') }}</label>
                 <input type="text" class="form-control" name="name" value={{ $race->name }} />
             </div>
 
             <div class="form-group">
-                <label for="specie">Espécie:</label>
+                <label for="specie">{{ trans('app.specie') }}</label>
                 <input type="text" class="form-control" name="specie" value={{ $race->specie }} />
             </div>
 
             <div class="form-group">
-                <label for="genotype">Genotipo:</label>
+                <label for="genotype">{{ trans('app.genotype') }}</label>
                 <input type="text" class="form-control" name="genotype" value={{ $race->genotype }} />
             </div>
             <div class="form-group">
-                <label for="origin">Origem:</label>
+                <label for="origin">{{ trans('app.origin') }}</label>
                 <input type="text" class="form-control" name="origin" value={{ $race->origin }} />
             </div>
             <div class="form-group">
-                <label for="description">Descrição:</label>
+                <label for="description">{{ trans('app.description') }}</label>
                 <input type="text" class="form-control" name="description" value={{ $race->description }} />
             </div>
             
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" class="btn btn-primary">{{ trans('app.save') }}</button>
         </form>
     </div>
 </div>

@@ -14,29 +14,29 @@
            
             <a class="navbar-brand" href="{{ url('/') }}">
                 <ul class="nav navbar-nav">
-                <img src="images/logo.jpeg" style = "width:50px;heigth:auto" alt="">
+                <img src="images/logo.jpeg" style = "width:30px;heigth:auto" alt="">
                 {{ config('app.name', 'Laravel') }}
                 </ul>
             </a>
            
             
         </div>
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+        <!--div class="collapse navbar-collapse" id="app-navbar-collapse">
             <ul class="nav navbar-nav">
               
             </ul>
-        </div>
+        </div-->
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             
-            <ul class="nav navbar-nav">
+            <!--ul class="nav navbar-nav">
                 @if (Auth::user())
-                <!--li><a href="{{ route('races.index') }}">{{ __('app.races') }}</a></li-->
+                <li><a href="{{ route('races.index') }}">{{ __('app.races') }}</a></li>
                 <li><a href="{{ route('animals.index') }}">{{ __('app.pets') }}</a></li>
                 <li><a href="{{ route('users.search') }}">{{ __('app.search_your_family') }}</a></li>
                 <li><a href="{{ route('birthdays.index') }}">{{ __('birthday.birthday') }}</a></li>
                 @endif    
-            </ul>
+            </ul-->
             
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
@@ -62,6 +62,13 @@
                                 <li role="separator" class="divider"></li>
                             @endif
                             
+                            @if (Auth::user())
+                                <li><a href="{{ route('animals.index') }}">{{ __('app.pets') }}</a></li>
+                                <li><a href="{{ route('users.search') }}">{{ __('app.search_your_family') }}</a></li>
+                                <li><a href="{{ route('birthdays.index') }}">{{ __('birthday.birthday') }}</a></li>
+                                <li role="separator" class="divider"></li>
+                            @endif  
+
                             <li><a href="{{ route('profile') }}">{{ __('app.my_profile') }}</a></li>
                             <li><a href="{{ route('password.change') }}">{{ __('auth.change_password') }}</a></li>
                             <li>

@@ -4,7 +4,7 @@
 
 <div class="row">
  <div class="col-sm-8 offset-sm-2">
-    <h1 class="display-3">Adicionar Raça</h1>
+    <h1 class="display-3">{{ trans('app.record_race') }}</h1>
   <div>
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -18,29 +18,29 @@
       <form method="post" action="{{ route('races.store') }}">
           @csrf
           <div class="form-group">    
-              <label for="name">Nome:</label>
+              <label for="name">{{ trans('app.name') }}</label>
               <input type="text" class="form-control" name="name"/>
           </div>
 
           <div class="form-group">
-              <label for="specie">Espécie:</label>
+              <label for="specie">{{ trans('app.specie') }}</label>
               <input type="text" class="form-control" name="specie"/>
           </div>
 
           <div class="form-group">
-              <label for="genotype">Genotipo:</label>
+              <label for="genotype">{{ trans('app.genotype') }}</label>
               <input type="text" class="form-control" name="genotype"/>
           </div>
           <div class="form-group">
-              <label for="origin">Origem:</label>
+              <label for="origin">{{ trans('app.origin') }}</label>
               <input type="text" class="form-control" name="origin"/>
           </div>
           <div class="form-group">
-              <label for="description">Descrição:</label>
+              <label for="description">{{ trans('app.description') }}</label>
               <input type="text" class="form-control" name="description"/>
           </div>
                      
-          <button type="submit" class="btn btn-primary-outline">Adicionar</button>
+          <button type="submit" class="btn btn-primary-outline">{{ trans('app.save') }}</button>
       </form>
   </div>
 </div>

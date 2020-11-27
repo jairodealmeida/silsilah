@@ -32,13 +32,14 @@
             <label for="classes">Classe:</label>
 
             <select name="classes" id="classes">
-              <option value="volvo">Mamíferos</option>
-              <option value="saab">Aves</option>
-              <option value="mercedes">Répteis</option>
-              <option value="audi">Anfíbios</option>
-              <option value="audi">Peixes</option>
-              <option value="audi">Invertebrados</option>
+              <option value="mammals">Mamíferos</option>
+              <option value="birds">Aves</option>
+              <option value="reptiles">Répteis</option>
+              <option value="amphibians">Anfíbios</option>
+              <option value="pisces">Peixes</option>
+              <option value="invertebrates">Invertebrados</option>
             </select>
+
 
           </div>  
 
