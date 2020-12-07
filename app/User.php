@@ -53,7 +53,7 @@ class User extends Authenticatable
         'admin',
         'breeder_id',
         'animal_id',
-        'core_id',
+        'office_id',
     ];
 
     /**

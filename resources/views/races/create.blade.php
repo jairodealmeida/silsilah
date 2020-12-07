@@ -24,7 +24,12 @@
 
           <div class="form-group">
               <label for="specie">{{ trans('app.specie') }}</label>
-              <input type="text" class="form-control" name="specie"/>
+              <select id='specie' name="specie" class="form-control">
+                <option value='0'>Selecione</option>
+                @foreach($species as $specie)
+                  <option value='{{ $specie->id }}'>{{ $specie->title }}</option>
+                @endforeach
+             </select>
           </div>
 
           <div class="form-group">

@@ -26,12 +26,12 @@
               <input type="text" class="form-control" name="description"/>
           </div>
 
-          <div class="form-group">
-            <!--label for="description">Classe:</label>
-            <input type="text" class="form-control" name="description"/-->
-            <label for="classes">Classe:</label>
+          <!--div class="form-group">
 
-            <select name="classes" id="classes">
+            <label for="classe">Classe:</label>
+
+            <select id='classe' name="classe" class="form-control">
+              <option value='0'>Selecione</option>
               <option value="mammals">Mamíferos</option>
               <option value="birds">Aves</option>
               <option value="reptiles">Répteis</option>
@@ -40,8 +40,19 @@
               <option value="invertebrates">Invertebrados</option>
             </select>
 
-
-          </div>  
+          </div-->
+          
+          
+          <div class="form-group">
+            <label for="classe">{{ trans('app.classe') }}</label>
+            <select id='classe' name="classe" class="form-control">
+              <option value='0'>Selecione</option>
+              
+              @foreach($classes as $classe)
+                <option value='{{ $classe }}'>{{ $classe }}</option>
+              @endforeach
+           </select>
+        </div>
 
           
 

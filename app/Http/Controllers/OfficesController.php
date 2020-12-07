@@ -6,13 +6,15 @@ use DB;
 use Storage;
 use App\Couple;
 use App\User;
-use App\Animal;
+use App\Offices;
+use App\Specie;
 use Illuminate\Http\Request;
 use App\Http\Requests\Animal\UpdateRequest;
 use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Uuid;
 
-class AnimalsController extends Controller
+//Núcleos
+class OfficesController extends Controller
 {
   /**
      * Display a listing of the resource.
@@ -21,10 +23,8 @@ class AnimalsController extends Controller
      */
     public function index()
     {
-        $animals = User::whereNotNull('animal_id')->
-                    where('office_id', '=' , Auth::user()->office_id)->
-                    get();
-        return view('animals.index', compact('animals'));
+        $offices = User::whereNotNull('office_id')->get();
+        return view('offices.index', compact('offices'));
     }
 
     /**
@@ -34,7 +34,9 @@ class AnimalsController extends Controller
      */
     public function create()
     {
-        return view('animals.create');
+        $species = Specie::all();
+        
+        return view('offices.create', compact('species'));
     }
  /**
      * Create a new user instance after a valid registration.
@@ -42,19 +44,26 @@ class AnimalsController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function register(array $data)
+    protected function register(Request $data)
     {
 
-        $animal = Animal::create([
-            'id' => Uuid::uuid4()->toString()
+        //$selectId = $data->input('species'); 
+        $office = Offices::create([
+            'id' => Uuid::uuid4()->toString(),
+            'description' => $data->get('name'),
+            'registerquote' => $data->get('registerquote'),
+            'duedate' => $data->get('duedate'),
+            'species' => 'Gato'
         ]);
-        $animal->save();
+        //Log::info($selectId);
         $user = User::create([
             'id' => Uuid::uuid4()->toString(),
             'nickname' => $data['nickname'],
             'name' => $data['name'],
-            'animal_id' => $animal->id
+            'office_id' => $office->id
         ]);
+        $office->manager_id = $user->id;    
+        $office->save();
         $user->manager_id = $user->id;
         $user->save();
         return $user;
@@ -67,27 +76,26 @@ class AnimalsController extends Controller
      */
     public function store(Request $request)
     {
-        /*$request->validate([
-            'name'=>'required',
-            'description'=>'required'
-        ]);*/
-        
-        $animal = Animal::create([
-            'id' => Uuid::uuid4()->toString()
+        $office = Offices::create([
+            'id' => Uuid::uuid4()->toString(),
+            'description' => $request->get('name'),
+            'registerquote' => $request->get('registerquote'),
+            'duedate' => $request->get('duedate'),
+            'species' => $request->get('species'),
         ]);
-        $animal->save();
-
         $user = new User([
             'id' => Uuid::uuid4()->toString(),
             'nickname' => $request->get('nickname'),
             'name' => $request->get('name'),
             'gender_id' => $request->get('gender_id'),
-            'animal_id' => $animal->id,
-            'office_id' => Auth::user()->office_id,
+            'office_id' => $office->id,
         ]);
-        $user->save();
+        $office->manager_id = $user->id;
+        $office->save();
         $user->manager_id = $user->id;
-        return redirect('/animals')->with('success', 'Salvo com sucesso!');
+        $user->save();
+        
+        return redirect('/offices')->with('success', 'Salvo com sucesso!');
     }
 
     /**
@@ -109,8 +117,8 @@ class AnimalsController extends Controller
      */
     public function edit($id)
     {
-        $animal = User::find($id);
-        return view('animals.edit', compact('animal'));  
+        $office = User::find($id);
+        return view('offices.edit', compact('office'));  
     }
 
     /**
@@ -127,11 +135,11 @@ class AnimalsController extends Controller
             'description'=>'required'
         ]);
 
-        $animal = User::find($id);
-        $animal->name =  $request->get('name');
-        $animal->description = $request->get('description');
-        $animal->save();
-        return redirect('/animals')->with('success', 'Alterado com sucesso!');
+        $office = User::find($id);
+        $office->name =  $request->get('name');
+        $office->description = $request->get('description');
+        $office->save();
+        return redirect('/offices')->with('success', 'Alterado com sucesso!');
     }
 
     /**
@@ -142,9 +150,9 @@ class AnimalsController extends Controller
      */
     public function destroy($id)
     {
-        $animal = User::find($id);
-        $animal->delete();
+        $office = User::find($id);
+        $office->delete();
 
-        return redirect('/animals')->with('success', 'Excluido com sucesso!');
+        return redirect('/offices')->with('success', 'Excluido com sucesso!');
     }
 }

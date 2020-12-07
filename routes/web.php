@@ -90,7 +90,14 @@ Route::get('genotypes/{genotype}/edit', 'GenotypeController@edit')->name('genoty
 Route::patch('genotypes/{genotype}', 'GenotypeController@update')->name('genotypes.update');
 Route::delete('genotypes/{genotype}', 'GenotypeController@destroy')->name('genotypes.destroy');
 
+//Route::get('creators', 'CreatorsController@index')->name('creators.index');
 Route::get('creators', 'CreatorsController@index')->name('creators.index');
+Route::get('creators/create', 'CreatorsController@create')->name('creators.create');
+Route::post('creators', 'CreatorsController@store')->name('creators.store');
+Route::get('creators/{creator}', 'CreatorsController@show')->name('creators.show');
+Route::get('creators/{creator}/edit', 'CreatorsController@edit')->name('creators.edit');
+Route::patch('creators/{creator}', 'CreatorsController@update')->name('creators.update');
+Route::delete('creators/{creator}', 'CreatorsController@destroy')->name('creators.destroy');
 
 
 Route::get('animals', 'AnimalsController@index')->name('animals.index');
@@ -102,14 +109,13 @@ Route::patch('animals/{animal}', 'AnimalsController@update')->name('animals.upda
 Route::delete('animals/{animal}', 'AnimalsController@destroy')->name('animals.destroy');
 
 
-
-Route::get('cores', 'CoreController@index')->name('cores.index');
-Route::get('cores/create', 'CoreController@create')->name('cores.create');
-Route::post('cores', 'CoreController@store')->name('cores.store');
-Route::get('cores/{core}', 'CoreController@show')->name('cores.show');
-Route::get('cores/{core}/edit', 'CoreController@edit')->name('cores.edit');
-Route::patch('cores/{core}', 'CoreController@update')->name('cores.update');
-Route::delete('cores/{core}', 'CoreController@destroy')->name('cores.destroy');
+Route::get('offices', 'OfficesController@index')->name('offices.index');
+Route::get('offices/create', 'OfficesController@create')->name('offices.create');
+Route::post('offices', 'OfficesController@store')->name('offices.store');
+Route::get('offices/{office}', 'OfficesController@show')->name('offices.show');
+Route::get('offices/{office}/edit', 'OfficesController@edit')->name('offices.edit');
+Route::patch('offices/{office}', 'OfficesController@update')->name('offices.update');
+Route::delete('offices/{office}', 'OfficesController@destroy')->name('offices.destroy');
 
 /**
  * Admin only routes

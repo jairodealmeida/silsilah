@@ -4,7 +4,7 @@
 
 <div class="row">
  <div class="col-sm-8 offset-sm-2">
-    <h1 class="display-3">{{ trans('app.record_core') }}</h1>
+    <h1 class="display-3">{{ trans('app.record_creator') }}</h1>
   <div>
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -15,10 +15,10 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('cores.store') }}">
+      <form method="post" action="{{ route('creators.store') }}">
           @csrf
           <div class="form-group{{ $errors->has('nickname') ? ' has-error' : '' }}">
-            <label for="nickname" class="col-md-4 control-label">{{ trans('app.title') }}</label>
+            <label for="nickname" class="col-md-4 control-label">{{ trans('app.nickname') }}</label>
 
             <div class="col-md-6">
                 <input id="nickname" type="text" class="form-control" name="nickname" value="{{ old('nickname') }}" required autofocus>
@@ -45,8 +45,8 @@
             </div>
         </div>
 
-        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-            <label for="email" class="col-md-4 control-label">{{ trans('app.email') }}</label>
+        <!--div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+            <label for="email" class="col-md-4 control-label">{{ trans('creator.email') }}</label>
 
             <div class="col-md-6">
                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -57,46 +57,17 @@
                     </span>
                 @endif
             </div>
-        </div>
+        </div-->
 
-        <!--div class="form-group{{ $errors->has('gender_id') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('gender_id') ? ' has-error' : '' }}">
             <label for="gender_id" class="col-md-4 control-label">{{ trans('app.gender') }}</label>
 
             <div class="col-md-6">
                 {!! FormField::radios('gender_id', [1 => trans('app.male'), 2 => trans('app.female')], ['label' => false]) !!}
             </div>
-        </div-->
+        </div>
 
-<div class="form-group{{ $errors->has('duedate') ? ' has-error' : '' }}">
-                            <label for="duedate" class="col-md-4 control-label">{{ trans('app.duedate') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="duedate" type="date" class="form-control" name="duedate" value="{{ old('duedate') }}" required>
-                                
-                                @if ($errors->has('duedate'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('duedate') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        
-                        <div class="form-group{{ $errors->has('registerquote') ? ' has-error' : '' }}">
-                            <label for="registerquote" class="col-md-4 control-label">{{ trans('app.registerquote') }}</label>
-
-                            <div class="col-md-6">
-                                <input type="number" id="registerquote" name="registerquote" min="1" value="120" max="99999" required>
-
-                                @if ($errors->has('registerquote'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('registerquote') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        
-
-        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+        <!--div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
             <label for="password" class="col-md-4 control-label">{{ trans('auth.password') }}</label>
 
             <div class="col-md-6">
@@ -108,17 +79,17 @@
                     </span>
                 @endif
             </div>
-        </div>
+        </div-->
 
-        <div class="form-group">
+        <!--div class="form-group">
             <label for="password-confirm" class="col-md-4 control-label">{{ trans('auth.password_confirmation') }}</label>
 
             <div class="col-md-6">
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
             </div>
-        </div>
+        </div-->
                      
-          <button type="submit" class="btn btn-primary">Salvar</button>
+          <button type="submit" class="btn btn-primary-outline">{{ trans('app.save') }}</button>
       </form>
   </div>
 </div>

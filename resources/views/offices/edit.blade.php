@@ -15,7 +15,7 @@
         </div>
         <br /> 
         @endif
-        <form method="post" action="{{ route('cores.update', $core->id) }}">
+        <form method="post" action="{{ route('offices.update', $office->id) }}">
             @method('PATCH') 
             @csrf
             <div class="form-group{{ $errors->has('nickname') ? ' has-error' : '' }}">

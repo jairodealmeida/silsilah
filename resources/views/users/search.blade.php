@@ -59,11 +59,11 @@
             </div>
             <div class="panel-body">
                 
-                @if ($user->core_id)
+                @if ($user->office_id)
                     <h3 class="panel-title">{{ $user->profileLink() }} </h3>
                     <div>{{ trans('user.name') }} : {{ $user->nickname }}</div>
                     <hr style="margin: 5px 0;">
-                    <div>{{ trans('user.core') }}</div>
+                    <div>{{ trans('user.office') }}</div>
                 @else
                     <h3 class="panel-title">{{ $user->profileLink() }} ({{ $user->gender }})</h3>
                     <div>{{ trans('user.nickname') }} : {{ $user->nickname }}</div>

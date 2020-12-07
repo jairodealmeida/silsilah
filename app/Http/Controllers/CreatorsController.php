@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use DB;
-use Storage;
-use App\Couple;
+use App\Creator;
 use App\User;
-use App\Core;
 use Illuminate\Http\Request;
-use App\Http\Requests\Animal\UpdateRequest;
 use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Uuid;
-
-//Núcleos
-class CoreController extends Controller
+class CreatorsController extends Controller
 {
   /**
      * Display a listing of the resource.
@@ -22,8 +16,10 @@ class CoreController extends Controller
      */
     public function index()
     {
-        $cores = User::whereNotNull('core_id')->get();
-        return view('cores.index', compact('cores'));
+        $creators = User::whereNotNull('creator_id')->
+                    where('office_id', '=' , Auth::user()->office_id)->
+                    get();
+        return view('creators.index', compact('creators'));
     }
 
     /**
@@ -33,7 +29,7 @@ class CoreController extends Controller
      */
     public function create()
     {
-        return view('cores.create');
+        return view('creators.create');
     }
  /**
      * Create a new user instance after a valid registration.
@@ -44,15 +40,16 @@ class CoreController extends Controller
     protected function register(array $data)
     {
 
-        $core = Core::create([
+
+        $creator = Creator::create([
             'id' => Uuid::uuid4()->toString()
         ]);
-        $core->save();
+        $creator->save();
         $user = User::create([
             'id' => Uuid::uuid4()->toString(),
             'nickname' => $data['nickname'],
             'name' => $data['name'],
-            'core_id' => $core->id
+            'creator_id' => $creator->id
         ]);
         $user->manager_id = $user->id;
         $user->save();
@@ -66,21 +63,27 @@ class CoreController extends Controller
      */
     public function store(Request $request)
     {
-        $core = Core::create([
+        /*$request->validate([
+            'name'=>'required',
+            'description'=>'required'
+        ]);*/
+        
+        $creator = Creator::create([
             'id' => Uuid::uuid4()->toString()
         ]);
-        $core->save();
+        $creator->save();
 
         $user = new User([
             'id' => Uuid::uuid4()->toString(),
             'nickname' => $request->get('nickname'),
             'name' => $request->get('name'),
             'gender_id' => $request->get('gender_id'),
-            'core_id' => $core->id,
+            'creator_id' => $creator->id,
+            'office_id' => Auth::user()->office_id,
         ]);
         $user->save();
         $user->manager_id = $user->id;
-        return redirect('/cores')->with('success', 'Salvo com sucesso!');
+        return redirect('/creators')->with('success', 'Salvo com sucesso!');
     }
 
     /**
@@ -102,8 +105,8 @@ class CoreController extends Controller
      */
     public function edit($id)
     {
-        $core = User::find($id);
-        return view('cores.edit', compact('core'));  
+        $creator = User::find($id);
+        return view('creators.edit', compact('creator'));  
     }
 
     /**
@@ -120,11 +123,11 @@ class CoreController extends Controller
             'description'=>'required'
         ]);
 
-        $core = User::find($id);
-        $core->name =  $request->get('name');
-        $core->description = $request->get('description');
-        $core->save();
-        return redirect('/cores')->with('success', 'Alterado com sucesso!');
+        $creator = User::find($id);
+        $creator->name =  $request->get('name');
+        $creator->description = $request->get('description');
+        $creator->save();
+        return redirect('/creators')->with('success', 'Alterado com sucesso!');
     }
 
     /**
@@ -135,9 +138,9 @@ class CoreController extends Controller
      */
     public function destroy($id)
     {
-        $core = User::find($id);
-        $core->delete();
+        $creator = User::find($id);
+        $creator->delete();
 
-        return redirect('/cores')->with('success', 'Excluido com sucesso!');
+        return redirect('/creators')->with('success', 'Excluido com sucesso!');
     }
 }

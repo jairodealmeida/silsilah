@@ -10,7 +10,7 @@
   <table class="table table-striped">
     <thead>
         <tr>
-          <td>Código</td>
+
           <td>Título</td>
           <td>Descrição</td>
           <td>Classe</td>
@@ -20,15 +20,15 @@
     <tbody>
         @forelse($species as $specie)
         <tr>
-            <td>{{$specie->id}}</td>
+
             <td>{{$specie->title}}</td>
             <td>{{$specie->description}} </td>
             <td>{{$specie->classe}} </td>
             <td>
-                <a href="{{ route('species.edit',$specie->id)}}" class="btn btn-primary">Editar</a>
+                <a href="{{ route('species.edit',$specie->title)}}" class="btn btn-primary">Editar</a>
             </td>
             <td>
-                <form action="{{ route('species.destroy', $specie->id)}}" method="post">
+                <form action="{{ route('species.destroy', $specie->title)}}" method="post">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit">Remover</button>

@@ -3,9 +3,9 @@
 @section('content')
 <div class="row">
 <div class="col-sm-12">
-    <h1 class="display-3">{{ trans('app.record_cores') }}</h1>  
+    <h1 class="display-3">{{ trans('app.record_offices') }}</h1>  
     <div>
-    <a style="margin: 19px;" href="{{ route('cores.create')}}" class="btn btn-primary">Cadastrar</a>
+    <a style="margin: 19px;" href="{{ route('offices.create')}}" class="btn btn-primary">Cadastrar</a>
     </div>    
   <table class="table table-striped">
     <thead>
@@ -24,26 +24,26 @@
         </tr>
     </thead>
     <tbody>
-        @forelse($cores as $core)
+        @forelse($offices as $office)
         <tr>
           
             <td>{{''}}</td>
-            <td>{{$core->name}}</td>
-            <td>{{$core->nickname}} </td>
-            <td>{{$core->gender}} </td>
-            <td>{{$core->father!=null ? $core->father->name : '' }} </td>
-            <td>{{$core->mother!=null ? $core->mother->name : '' }} </td>
-            <td>{{$core->core_id}} </td>
-            <td>{{$core->spouses_count}} </td>
-            <td>{{$core->managed_user}} </td>
-            <td>{{$core->managed_couple}} </td>
+            <td>{{$office->name}}</td>
+            <td>{{$office->nickname}} </td>
+            <td>{{$office->gender}} </td>
+            <td>{{$office->father!=null ? $office->father->name : '' }} </td>
+            <td>{{$office->mother!=null ? $office->mother->name : '' }} </td>
+            <td>{{$office->office_id}} </td>
+            <td>{{$office->spouses_count}} </td>
+            <td>{{$office->managed_user}} </td>
+            <td>{{$office->managed_couple}} </td>
 
             <td>
-              {{ link_to_route('users.edit', trans('app.edit'), [$core->id], ['class' => 'btn btn-warning']) }}
+              {{ link_to_route('users.edit', trans('app.edit'), [$office->id], ['class' => 'btn btn-warning']) }}
                
             </td>
             <td>
-                <form action="{{ route('cores.destroy', $core->id)}}" method="post">
+                <form action="{{ route('offices.destroy', $office->id)}}" method="post">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit">Remover</button>

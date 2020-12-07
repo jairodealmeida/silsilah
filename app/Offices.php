@@ -4,11 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Core extends Model
+class Offices extends Model
 {
     protected $fillable = [
+        'id',
         'description',
         'registerquote',
-        'duedate'
+        'duedate',
+        'specie', 
+        'manager_id'
     ];
 }

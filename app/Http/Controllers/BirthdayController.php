@@ -21,7 +21,7 @@ class BirthdayController extends Controller
 
         $userBirthdayQuery = User::whereNotNull('dob')
             ->whereNotNull('animal_id')
-            ->where('core_id', '=' , Auth::user()->core_id)
+            ->where('office_id', '=' , Auth::user()->office_id)
             ->select('users.name', 'users.dob', 'users.id as user_id', DB::raw($birthdayDateRaw))
             ->orderBy('birthday_date', 'asc')
             ->havingBetween('birthday_date', [

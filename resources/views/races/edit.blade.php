@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-sm-8 offset-sm-2">
-        <h1 class="display-3">Alterar Raça</h1>
+        <h1 class="display-3">{{ trans('app.update_races') }}</h1>
 
         @if ($errors->any())
         <div class="alert alert-danger">

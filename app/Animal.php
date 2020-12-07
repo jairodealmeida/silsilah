@@ -27,6 +27,7 @@ class Animal extends Model
         'father_id', 
         'mother_id', 
         'parent_id',
+        'manager_id'
     ];
 
       /**

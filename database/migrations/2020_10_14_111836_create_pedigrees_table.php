@@ -15,7 +15,7 @@ class CreatePedigreesTable extends Migration
     {
         Schema::create('pedigrees', function (Blueprint $table) {
             $table->increments('id');
-            $table->uuid('animal');
+            $table->uuid('id_animal');
             $table->string('pedigree');
             $table->timestamps();
         });

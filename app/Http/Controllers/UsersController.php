@@ -28,8 +28,6 @@ class UsersController extends Controller
                 $query->where('name', 'like', '%'.$q.'%');
                 $query->orWhere('nickname', 'like', '%'.$q.'%');
             })
-            //->whereNotNull('animal_id')
-            //->where('core_id', '=' , Auth::user()->core_id)
             ->orderBy('name', 'asc')
             ->paginate(24);
         }else{

@@ -1,23 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-@can('edit', $core)
+@can('edit', $office)
     <div class="pull-right">
-        {{ link_to_route('cores.edit', trans('core.edit'), $core, ['class' => 'btn btn-warning']) }}
+        {{ link_to_route('offices.edit', trans('office.edit'), $office, ['class' => 'btn btn-warning']) }}
     </div>
 @endcan
 <h2 class="page-header">
-    {{ $core->husband->name }} & {{ $core->wife->name }} <small>{{ trans('core.detail') }}</small>
+    {{ $office->husband->name }} & {{ $office->wife->name }} <small>{{ trans('office.detail') }}</small>
 </h2>
 
-@include('cores.partials.stat')
+@include('offices.partials.stat')
 <br>
 <h4 class="page-header">{{ trans('user.childs') }} & {{ trans('user.grand_childs') }}</h4>
-@if ($core->childs->isEmpty())
+@if ($office->childs->isEmpty())
     <i>{{ trans('app.childs_were_not_recorded') }}</i>
 @else
     <?php $no = 0; ?>
-    @foreach($core->childs->chunk(4) as $chunkedChild)
+    @foreach($office->childs->chunk(4) as $chunkedChild)
     <div class="row">
         @foreach($chunkedChild as $child)
         <div class="col-md-3">

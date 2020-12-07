@@ -26,7 +26,16 @@ class SpecieController  extends Controller
      */
     public function create()
     {
-        return view('species.create');
+
+        $classes = array(
+            'mammals' => 'Mamíferos',
+            'birds' =>'Aves',
+            'reptiles'=>'Répteis',
+            'amphibians'=>'Anfíbios',
+            'pisces'=>'Peixes',
+            'invertebrates'=>'Invertebrados'
+        );
+        return view('species.create',  compact('classes'));
     }
 
     /**

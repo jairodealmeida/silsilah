@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
 <div class="col-sm-12">
-    <h1 class="display-3">{{ trans('app.record_cores') }}</h1>  
+    <h1 class="display-3">{{ trans('app.record_races') }}</h1>  
     <div>
     <a style="margin: 19px;" href="{{ route('races.create')}}" class="btn btn-primary">{{ trans('app.record_race') }}</a>
     </div>    

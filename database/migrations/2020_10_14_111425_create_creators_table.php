@@ -2,9 +2,10 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBreedersTable extends Migration
+class CreateCreatorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +14,20 @@ class CreateBreedersTable extends Migration
      */
     public function up()
     {
-        Schema::create('breeders', function (Blueprint $table) {
+        Schema::create('creators', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('broodtotal');
             $table->date('certifyduedate');
             $table->string('aliastype');
             $table->uuid('proprietary');
             $table->string('description');
+            $table->string('manager_id')->nullable();
             $table->timestamps();
         });
+        // Insert some stuff
+        //DB::table('creators')->insert(array('broodtotal' => 'name@domain.com','verified' => true));
+        //DB::table('creators')->insert(array('email' => 'name@domain.com','verified' => true));
+        //DB::table('creators')->insert(array('email' => 'name@domain.com','verified' => true));
     }
 
     /**
@@ -31,6 +37,6 @@ class CreateBreedersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('breeders');
+        Schema::dropIfExists('creators');
     }
 }

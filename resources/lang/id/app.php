@@ -56,19 +56,22 @@ return [
     //races
     'race'  => 'Raça',
     'races'  => 'Raças',
-    'record_races'  => 'Cadastrar raças',
+    'record_races' => 'Raças Cadastradas',
+    'record_race' => 'Cadastrar Raça',
+    'update_races'  => 'Alterar Raça',
+
     'genotype'  => 'Genotipo',
-    
 
     //creators 
     'creator'  => 'Criador',
     'creators'  => 'Criadores',
-    'record_creators'  => 'Cadastrar criadores',
+    'record_creators'  => 'Criadores Cadastrados',
+    'record_creator'  => 'Cadastrar Criador',
 
     //animals
     'animal'  => 'Animal',
     'animals'  => 'Animais',
-    'record_animals'  => 'Cadastrar animais',
+    'record_animals'  => 'Animais Cadastrados',
     
     'countries' => 'Paises',
     'species' => 'Espécies',
@@ -81,14 +84,12 @@ return [
     'duedate' => 'Vencimento',
     'registerquote' => 'Cota para emissão',
     'especies' => 'Especies',
-    'core' => 'Cartório',
-    'cores' => 'Cartórios',
-    'record_core' => 'Cadastrar Cartórios',
-    'record_cores' => 'Cartórios Cadastrados',
+    'office' => 'Cartório',
+    'offices' => 'Cartórios',
+    'record_office' => 'Cadastrar Cartórios',
+    'record_offices' => 'Cartórios Cadastrados',
 
-    'races' => 'Raças',
-    'record_races' => 'Raças Cadastradas',
-    'record_race' => 'Cadastrar Raça',
+    
 
     'record_animal' => 'Cadastrar Animal',
     'nickname' => 'Apelido',
@@ -107,6 +108,9 @@ return [
 
     'save' => 'Salvar',
     'delete' => 'Excluir',
+
+    'parents' => 'Cônjuges',
+    'gender'=>'Sexo',
 
 
 ];

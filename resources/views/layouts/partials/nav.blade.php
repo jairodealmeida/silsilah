@@ -33,6 +33,7 @@
                 @if (Auth::user())
                 <li><a href="{{ route('races.index') }}">{{ __('app.races') }}</a></li>
                 <li><a href="{{ route('animals.index') }}">{{ __('app.pets') }}</a></li>
+                <li><a href="{{ route('offices.index') }}">{{ __('app.offices') }}</a></li>
                 <li><a href="{{ route('users.search') }}">{{ __('app.search_your_family') }}</a></li>
                 <li><a href="{{ route('birthdays.index') }}">{{ __('birthday.birthday') }}</a></li>
                 @endif    
@@ -56,9 +57,11 @@
                         <ul class="dropdown-menu" role="menu">
                             @if (is_system_admin(auth()->user()))
                                 <!--li><a href="{{ route('backups.index') }}">{{ __('backup.list') }}</a></li-->
-                                <li><a href="{{ route('cores.index') }}">{{ __('app.cores') }}</a></li>
+                                
                                 <li><a href="{{ route('species.index') }}">{{ __('app.species') }}</a></li>
                                 <li><a href="{{ route('races.index') }}">{{ __('app.races') }}</a></li>
+                                <li><a href="{{ route('offices.index') }}">{{ __('app.offices') }}</a></li>
+                                <li><a href="{{ route('creators.index') }}">{{ __('app.creators') }}</a></li>
                                 <li role="separator" class="divider"></li>
                             @endif
                             

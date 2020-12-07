@@ -3,9 +3,9 @@
 @section('content')
 <div class="row">
 <div class="col-sm-12">
-    <h1 class="display-3">{{ trans('app.record_animals') }}</h1>  
+    <h1 class="display-3">{{ trans('app.record_creators') }}</h1>  
     <div>
-    <a style="margin: 19px;" href="{{ route('animals.create')}}" class="btn btn-primary">{{ trans('app.record_animal') }}</a>
+    <a style="margin: 19px;" href="{{ route('creators.create')}}" class="btn btn-primary">{{ trans('app.record_creator') }}</a>
     </div>    
   <table class="table table-striped">
     <thead>
@@ -24,26 +24,26 @@
         </tr>
     </thead>
     <tbody>
-        @forelse($animals as $animal)
+        @forelse($creators as $creator)
         <tr>
           
             <td>{{''}}</td>
-            <td>{{$animal->name}}</td>
-            <td>{{$animal->nickname}} </td>
-            <td>{{$animal->gender}} </td>
-            <td>{{$animal->father!=null ? $animal->father->name : '' }} </td>
-            <td>{{$animal->mother!=null ? $animal->mother->name : '' }} </td>
-            <td>{{$animal->office_id}} </td>
-            <td>{{$animal->spouses_count}} </td>
-            <td>{{$animal->managed_user}} </td>
-            <td>{{$animal->managed_couple}} </td>
+            <td>{{$creator->name}}</td>
+            <td>{{$creator->nickname}} </td>
+            <td>{{$creator->gender}} </td>
+            <td>{{$creator->father!=null ? $creator->father->name : '' }} </td>
+            <td>{{$creator->mother!=null ? $creator->mother->name : '' }} </td>
+            <td>{{$creator->office_id}} </td>
+            <td>{{$creator->spouses_count}} </td>
+            <td>{{$creator->managed_user}} </td>
+            <td>{{$creator->managed_couple}} </td>
 
             <td>
-              {{ link_to_route('users.edit', trans('app.edit'), [$animal->id], ['class' => 'btn btn-warning']) }}
+              {{ link_to_route('users.edit', trans('app.edit'), [$creator->id], ['class' => 'btn btn-warning']) }}
                
             </td>
             <td>
-                <form action="{{ route('animals.destroy', $animal->id)}}" method="post">
+                <form action="{{ route('creators.destroy', $creator->id)}}" method="post">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit">{{ trans('app.delete') }}</button>

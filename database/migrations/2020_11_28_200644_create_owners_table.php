@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAnimalsTable extends Migration
+class CreateOwnersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateAnimalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('animals', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('race_id')->nullable();
-            $table->string('proprietary')->nullable();
-            $table->uuid('pedigree_id')->nullable();
-            $table->uuid('office_id')->nullable();
+        Schema::create('owners', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('manager_id')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateAnimalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('animals');
+        Schema::dropIfExists('owners');
     }
 }
