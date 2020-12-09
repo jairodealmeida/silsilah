@@ -11,32 +11,35 @@
     <thead>
         <tr>
           <td>Código</td>
+          <td>Nome Cartório</td>
           <td>Nome</td>
-          <td>Apelido</td>
-          <td>Sexo</td>
-          <td>Nome do pai</td>
+          <td>Quota</td>
+          <td>Vencimento</td>
+          <td>Espécie</td>
+          <!--td>Nome do pai</td>
           <td>Nome da mãe</td>
-          <td>Ninhada</td>
+          <td>Ninhadas</td>
           <td>Avôs</td>
           <td>Proprietário</td>
-          <td>Casal</td>
+          <td>Casal</td-->
           <td colspan = 2>Ações</td>
         </tr>
     </thead>
     <tbody>
         @forelse($offices as $office)
         <tr>
-          
             <td>{{''}}</td>
             <td>{{$office->name}}</td>
             <td>{{$office->nickname}} </td>
-            <td>{{$office->gender}} </td>
-            <td>{{$office->father!=null ? $office->father->name : '' }} </td>
+            <td>{{$office->office_id->registerquote}} </td>
+            <td>{{$office->office_id->duedate}} </td>
+            <td>{{$office->office_id->specie}} </td>
+            <!--td>{{$office->father!=null ? $office->father->name : '' }} </td>
             <td>{{$office->mother!=null ? $office->mother->name : '' }} </td>
             <td>{{$office->office_id}} </td>
             <td>{{$office->spouses_count}} </td>
             <td>{{$office->managed_user}} </td>
-            <td>{{$office->managed_couple}} </td>
+            <td>{{$office->managed_couple}} </td-->
 
             <td>
               {{ link_to_route('users.edit', trans('app.edit'), [$office->id], ['class' => 'btn btn-warning']) }}

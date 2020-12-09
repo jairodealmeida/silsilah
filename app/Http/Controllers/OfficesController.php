@@ -24,9 +24,17 @@ class OfficesController extends Controller
     public function index()
     {
         $offices = User::whereNotNull('office_id')->get();
+        foreach ($offices as $office)
+        {
+           $office->office_id =  $this->getOffice( $office->office_id );
+        }
         return view('offices.index', compact('offices'));
     }
-
+    private function getOffice(string $office_id)
+    {
+        //return Offices::where('id', $office_id);
+        return Offices::find($office_id);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -53,7 +61,7 @@ class OfficesController extends Controller
             'description' => $data->get('name'),
             'registerquote' => $data->get('registerquote'),
             'duedate' => $data->get('duedate'),
-            'species' => 'Gato'
+            'specie' => $data->get('specie')
         ]);
         //Log::info($selectId);
         $user = User::create([
@@ -76,24 +84,31 @@ class OfficesController extends Controller
      */
     public function store(Request $request)
     {
+        $officeid = Uuid::uuid4()->toString();
+        $userid = Uuid::uuid4()->toString();
         $office = Offices::create([
-            'id' => Uuid::uuid4()->toString(),
+            'id' => $officeid,
             'description' => $request->get('name'),
             'registerquote' => $request->get('registerquote'),
             'duedate' => $request->get('duedate'),
-            'species' => $request->get('species'),
+            'specie' => $request->get('specie'),
+            'manager_id' => $userid
         ]);
-        $user = new User([
-            'id' => Uuid::uuid4()->toString(),
+        $office->save();
+        //$user = new User([
+        $user = User::create([
+            'id' => $userid,
             'nickname' => $request->get('nickname'),
             'name' => $request->get('name'),
-            'gender_id' => $request->get('gender_id'),
-            'office_id' => $office->id,
+            'gender_id' => 0,
+            'office_id' => $officeid,
         ]);
-        $office->manager_id = $user->id;
-        $office->save();
+        //$office->manager_id = $user->id;
+        //$office->save();
         $user->manager_id = $user->id;
         $user->save();
+        //$office->manager_id = $user->id;
+        //$office->save();
         
         return redirect('/offices')->with('success', 'Salvo com sucesso!');
     }

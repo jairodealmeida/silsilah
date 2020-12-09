@@ -108,7 +108,7 @@ class CreateRacesTable extends Migration
             DB::table('races')->insert(array('id'=>81,'name'=>'Toyger','englishname'=>'Toyger','specie'=>2,'origin'=>'Estados Unidos','description'=>''));
             DB::table('races')->insert(array('id'=>82,'name'=>'Van Turco','englishname'=>'Turkish Van','specie'=>2,'origin'=>'Turquia','description'=>''));
             DB::table('races')->insert(array('id'=>83,'name'=>'Wirehair Americano','englishname'=>'American Wirehair','specie'=>2,'origin'=>'Estados Unidos','description'=>''));
-                                                                
+                                                            
             /*DB::table('races')->insert(array('id'=>84,'name'=>'Akita','englishname'=>'Akita','specie'=>1,'origin'=>'','description'=>'Leal, amigo e brincalhão'));
             DB::table('races')->insert(array('id'=>85,'name'=>'Basset hound','englishname'=>'Basset hound','specie'=>1,'origin'=>'','description'=>'Paciente, teimoso e charmoso'));
             DB::table('races')->insert(array('id'=>86,'name'=>'Beagle','englishname'=>'Beagle','specie'=>1,'origin'=>'','description'=>'Alegre, companheiro e aventureiro'));
