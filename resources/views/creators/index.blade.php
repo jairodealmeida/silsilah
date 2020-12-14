@@ -10,36 +10,26 @@
   <table class="table table-striped">
     <thead>
         <tr>
-          <td>{{ trans('app.id') }}</td>
-          <td>{{ trans('app.name') }}</td>
-          <td>{{ trans('app.nickname') }}</td>
-          <td>{{ trans('app.genotype') }}</td>
-          <td>{{ trans('app.father_name') }}</td>
-          <td>{{ trans('app.mother_name') }}</td>
-          <td>{{ trans('app.brooding') }}</td>
-          <td>{{ trans('app.parents') }}</td>
-          <td>{{ trans('app.proprietary') }}</td>
-          <td>{{ trans('app.couple') }}</td>
-          <td colspan = 2>{{ trans('app.actions') }}</td>
+          <td>Ninhadas</td>
+          <td>Vencimento</td>
+          <td>Título</td>
+          <td>Descrição</td>
+          <td colspan = 3>Ações</td>
         </tr>
     </thead>
     <tbody>
         @forelse($creators as $creator)
         <tr>
           
-            <td>{{''}}</td>
-            <td>{{$creator->name}}</td>
-            <td>{{$creator->nickname}} </td>
-            <td>{{$creator->gender}} </td>
-            <td>{{$creator->father!=null ? $creator->father->name : '' }} </td>
-            <td>{{$creator->mother!=null ? $creator->mother->name : '' }} </td>
-            <td>{{$creator->office_id}} </td>
-            <td>{{$creator->spouses_count}} </td>
-            <td>{{$creator->managed_user}} </td>
-            <td>{{$creator->managed_couple}} </td>
+          <td>{{''}}</td>
+          <td>{{$creator->creator_id->broodtotal}}</td>
+          <td>{{$creator->creator_id->certifyduedate}} </td>
+          <td>{{$creator->creator_id->title}} </td>
+          <td>{{$creator->creator_id->description}} </td>
 
+           
             <td>
-              {{ link_to_route('users.edit', trans('app.edit'), [$creator->id], ['class' => 'btn btn-warning']) }}
+              {{ link_to_route('creators.edit', trans('app.edit'), [$creator->id], ['class' => 'btn btn-warning']) }}
                
             </td>
             <td>
@@ -49,6 +39,22 @@
                   <button class="btn btn-danger" type="submit">{{ trans('app.delete') }}</button>
                 </form>
             </td>
+
+            <td>
+              <form action="{{ route('creators.block', $creator->id)}}" method="post">
+                @if (!$creator->blocked)
+                  @csrf
+                  @method('POST')
+                  <button class="btn btn-danger" type="submit">Bloquear</button>
+                @endif
+                @if ($creator->blocked)
+                  @csrf
+                  @method('POST')
+                  <button class="btn btn-success" type="submit">Ativar</button>
+                @endif
+              </form>
+        </td>
+
         </tr>
         @empty
         <p>{{ trans('app.no_record_found') }}</p>

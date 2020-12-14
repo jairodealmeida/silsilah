@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Specie;
-
+use Ramsey\Uuid\Uuid;
 class SpecieController  extends Controller
 {
+   
     /**
      * Display a listing of the resource.
      *
@@ -53,7 +54,8 @@ class SpecieController  extends Controller
 
         $specie = new Specie([
             'title' => $request->get('title'),
-            'description' => $request->get('description')
+            'description' => $request->get('description'),
+            'classe' => $request->get('classe')
         ]);
         $specie->save();
         return redirect('/species')->with('success', 'Specie saved!');
@@ -78,8 +80,17 @@ class SpecieController  extends Controller
      */
     public function edit($id)
     {
+        
+        $classes = array(
+            'mammals' => 'Mamíferos',
+            'birds' =>'Aves',
+            'reptiles'=>'Répteis',
+            'amphibians'=>'Anfíbios',
+            'pisces'=>'Peixes',
+            'invertebrates'=>'Invertebrados'
+        );
         $specie = Specie::find($id);
-        return view('species.edit', compact('specie'));  
+        return view('species.edit', compact('specie','classes'));  
     }
 
     /**
@@ -96,9 +107,10 @@ class SpecieController  extends Controller
             'description'=>'required'
         ]);
 
-        $specie = Specie::find($id);
+        $specie = Specie::findOrFail($id);
         $specie->title =  $request->get('title');
         $specie->description = $request->get('description');
+        $specie->classe = $request->get('classe');
         $specie->save();
         return redirect('/species')->with('success', 'Specie updated!');
     }
@@ -111,7 +123,7 @@ class SpecieController  extends Controller
      */
     public function destroy($id)
     {
-        $specie = Specie::find($id);
+        $specie = Specie::findOrFail($id);
         $specie->delete();
 
         return redirect('/species')->with('success', 'Specie deleted!');

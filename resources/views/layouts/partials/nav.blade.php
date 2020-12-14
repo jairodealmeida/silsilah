@@ -62,6 +62,7 @@
                                 <li><a href="{{ route('races.index') }}">{{ __('app.races') }}</a></li>
                                 <li><a href="{{ route('offices.index') }}">{{ __('app.offices') }}</a></li>
                                 <li><a href="{{ route('creators.index') }}">{{ __('app.creators') }}</a></li>
+                                <li><a href="{{ route('proprietaries.index') }}">{{ __('app.proprietaries') }}</a></li>
                                 <li role="separator" class="divider"></li>
                             @endif
                             
@@ -72,7 +73,7 @@
                                 <li role="separator" class="divider"></li>
                             @endif  
 
-                            <li><a href="{{ route('profile') }}">{{ __('app.my_profile') }}</a></li>
+                            <!--li><a href="{{ route('profile') }}">{{ __('app.my_profile') }}</a></li-->
                             <li><a href="{{ route('password.change') }}">{{ __('auth.change_password') }}</a></li>
                             <li>
                                 <a href="{{ route('logout') }}"

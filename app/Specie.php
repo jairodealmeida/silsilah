@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Specie extends Model
 {
     protected $fillable = [
+        'id',
         'title',
-        'description'    
+        'description',
+        'classe'
     ];
 }

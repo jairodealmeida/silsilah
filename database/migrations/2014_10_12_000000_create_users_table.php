@@ -39,6 +39,7 @@ class CreateUsersTable extends Migration
             $table->uuid('creator_id')->nullable();
             $table->uuid('animal_id')->nullable();
             $table->uuid('office_id')->nullable();
+            $table->boolean('blocked')->default(0);
             $table->timestamps();
         });
         //usuario: jairodealmeida@gmail.com.br

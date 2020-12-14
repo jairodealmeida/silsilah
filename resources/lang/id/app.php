@@ -112,5 +112,11 @@ return [
     'parents' => 'Cônjuges',
     'gender'=>'Sexo',
 
+    'classe'=>'Classe',
+    'proprietaries'=>'Proprietários',
+'record_proprietaries'=>'Proprietários Cadastrados',
+'record_proprietary' =>'Cadastrar Proprietário',
+'broodtotal' => 'Total de ninhadas',
+'certifyduedate' => 'Validade de certificação', 
 
 ];

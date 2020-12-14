@@ -18,7 +18,6 @@
         <form method="post" action="{{ route('species.update', $specie->id) }}">
             @method('PATCH') 
             @csrf
-            {{$specie}}
             <div class="form-group">
                 <label for="name">Título:</label>
                 <input type="text" class="form-control" name="title" value="{{ $specie->title }}" />
@@ -27,6 +26,17 @@
             <div class="form-group">
                 <label for="description">Descrição:</label>
                 <input type="text" class="form-control" name="description" value="{{ $specie->description }}" />
+            </div>
+
+            <div class="form-group">
+                <label for="classe">{{ trans('app.classe') }}</label>
+                <select id='classe' name="classe" class="form-control">
+                  <option value='0'>Selecione</option>
+                  
+                  @foreach($classes as $classe)
+                    <option value='{{ $classe }}'>{{ $classe }}</option>
+                  @endforeach
+               </select>
             </div>
             
             <button type="submit" class="btn btn-primary">Salvar</button>

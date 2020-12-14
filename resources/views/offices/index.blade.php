@@ -16,13 +16,7 @@
           <td>Quota</td>
           <td>Vencimento</td>
           <td>Espécie</td>
-          <!--td>Nome do pai</td>
-          <td>Nome da mãe</td>
-          <td>Ninhadas</td>
-          <td>Avôs</td>
-          <td>Proprietário</td>
-          <td>Casal</td-->
-          <td colspan = 2>Ações</td>
+          <td colspan = 3>Ações</td>
         </tr>
     </thead>
     <tbody>
@@ -34,15 +28,8 @@
             <td>{{$office->office_id->registerquote}} </td>
             <td>{{$office->office_id->duedate}} </td>
             <td>{{$office->office_id->specie}} </td>
-            <!--td>{{$office->father!=null ? $office->father->name : '' }} </td>
-            <td>{{$office->mother!=null ? $office->mother->name : '' }} </td>
-            <td>{{$office->office_id}} </td>
-            <td>{{$office->spouses_count}} </td>
-            <td>{{$office->managed_user}} </td>
-            <td>{{$office->managed_couple}} </td-->
-
             <td>
-              {{ link_to_route('users.edit', trans('app.edit'), [$office->id], ['class' => 'btn btn-warning']) }}
+              {{ link_to_route('offices.edit', trans('app.edit'), [$office->id], ['class' => 'btn btn-warning']) }}
                
             </td>
             <td>
@@ -52,7 +39,29 @@
                   <button class="btn btn-danger" type="submit">Remover</button>
                 </form>
             </td>
+            <td>
+              
+                <form action="{{ route('offices.block', $office->id)}}" method="post">
+                  
+                  @if (!$office->blocked)
+                    @csrf
+                    @method('POST')
+                    <button class="btn btn-danger" type="submit">Bloquear</button>
+                  @endif
+                  @if ($office->blocked)
+                    @csrf
+                    @method('POST')
+                    <button class="btn btn-success" type="submit">Ativar</button>
+                  @endif
+
+
+                </form>
+              
+
+             
+          </td>
         </tr>
+        
         @empty
         <p>Não foi encontrado nenhum cadastro.</p>
         @endforelse

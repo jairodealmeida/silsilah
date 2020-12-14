@@ -68,4 +68,10 @@ return [
     'replace_confirm'       => 'Você tem certeza de substituir e excluir?',
     'replace_delete_text'   => 'Você dever selecionar outro como substituto.',
     'replace_delete_button' => 'Substituir e excluir',
+    'cpf' => 'CPF',
+    'rg' => 'RG',
+    'mobile' => 'Celular',
+    'num_address' => 'Número',
+    'comp_address' => 'Complemento',
+    'cep' => 'CEP',
 ];

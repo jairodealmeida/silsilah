@@ -19,6 +19,7 @@ class CreateCountriesTable extends Migration
             $table->string('description');
             $table->timestamps();
         });
+        
     }
 
     /**

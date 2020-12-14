@@ -57,6 +57,18 @@ Route::get('race/{race}', ['as' => 'races.show', 'races' => 'RaceController@show
 Route::get('race/{race}/edit', ['as' => 'races.edit', 'races' => 'RaceController@edit']);
 Route::patch('race/{race}', ['as' => 'races.update', 'races' => 'RaceController@update']);*/
 //Route::apiResource('races', 'RaceController');
+
+
+Route::get('proprietaries', 'ProprietaryController@index')->name('proprietaries.index');
+Route::get('proprietaries/create', 'ProprietaryController@create')->name('proprietaries.create');
+Route::post('proprietaries', 'ProprietaryController@store')->name('proprietaries.store');
+Route::get('proprietaries/{proprietary}', 'ProprietaryController@show')->name('proprietaries.show');
+Route::get('proprietaries/{proprietary}/edit', 'ProprietaryController@edit')->name('proprietaries.edit');
+Route::patch('proprietaries/{proprietary}', 'ProprietaryController@update')->name('proprietaries.update');
+Route::delete('proprietaries/{proprietary}', 'ProprietaryController@destroy')->name('proprietaries.destroy');
+
+
+
 Route::get('races', 'RaceController@index')->name('races.index');
 Route::get('races/create', 'RaceController@create')->name('races.create');
 Route::post('races', 'RaceController@store')->name('races.store');
@@ -98,7 +110,7 @@ Route::get('creators/{creator}', 'CreatorsController@show')->name('creators.show
 Route::get('creators/{creator}/edit', 'CreatorsController@edit')->name('creators.edit');
 Route::patch('creators/{creator}', 'CreatorsController@update')->name('creators.update');
 Route::delete('creators/{creator}', 'CreatorsController@destroy')->name('creators.destroy');
-
+Route::post('creators/{office}', 'CreatorsController@block')->name('creators.block');
 
 Route::get('animals', 'AnimalsController@index')->name('animals.index');
 Route::get('animals/create', 'AnimalsController@create')->name('animals.create');
@@ -116,6 +128,7 @@ Route::get('offices/{office}', 'OfficesController@show')->name('offices.show');
 Route::get('offices/{office}/edit', 'OfficesController@edit')->name('offices.edit');
 Route::patch('offices/{office}', 'OfficesController@update')->name('offices.update');
 Route::delete('offices/{office}', 'OfficesController@destroy')->name('offices.destroy');
+Route::post('offices/{office}', 'OfficesController@block')->name('offices.block');
 
 /**
  * Admin only routes

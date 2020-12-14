@@ -10,8 +10,7 @@ class Creator extends Model
         'id',
         'broodtotal',
         'certifyduedate',
-        'aliastype',
-        'proprietary',
+        'title',
         'description',
         'manager_id'
     ];
