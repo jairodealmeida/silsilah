@@ -38,26 +38,22 @@ class UsersController extends Controller
     {
         $q = $request->get('q');
         $users = [];
-       
-        if ($q) {
-            print($q);
-            $users = User::with('father', 'mother')->where(function ($query) use ($q) {
-                $query->where('name', 'like', '%'.$q.'%');
-                $query->orWhere('nickname', 'like', '%'.$q.'%');
+        
+            $users = User::with('father', 'mother')->
+            whereNull('office_id')->
+            whereNull('creator_id')->
+            where('admin',false)->
+            where(function ($query) use ($q) {
+                    if($q==''){
+                        $query->where('name', '!=', '');
+                    }else{
+                        $query->where('name', 'like', '%'.$q.'%');
+                        $query->orWhere('nickname', 'like', '%'.$q.'%');
+                    }
+                    
             })
             ->orderBy('name', 'asc')
             ->paginate(24);
-        }else{
-            $q = "";
-            print($q);
-            $users = User::with('father', 'mother')->where(function ($query) use ($q) {
-                $query->where('name', 'like', '%'.$q.'%');
-                $query->orWhere('nickname', 'like', '%'.$q.'%');
-            })
-            ->orderBy('name', 'asc')
-            ->paginate(24);
-        }
-
         return view('users.search', compact('users'));
     }
 
