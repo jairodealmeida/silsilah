@@ -10,22 +10,26 @@
   <table class="table table-striped">
     <thead>
         <tr>
+          <td>Apelido de Criador</td>
+          <td>Nome do Criador</td>
           <td>Ninhadas</td>
           <td>Vencimento</td>
           <td>Título</td>
           <td>Descrição</td>
+          <td>E-mail</td>
           <td colspan = 3>Ações</td>
         </tr>
     </thead>
     <tbody>
         @forelse($creators as $creator)
         <tr>
-          
-          <td>{{''}}</td>
+          <td>{{$creator->nickname}}</td>
+          <td>{{$creator->name}}</td>
           <td>{{$creator->creator_id->broodtotal}}</td>
           <td>{{$creator->creator_id->certifyduedate}} </td>
           <td>{{$creator->creator_id->title}} </td>
           <td>{{$creator->creator_id->description}} </td>
+          <td>{{$creator->email}} </td>
 
            
             <td>

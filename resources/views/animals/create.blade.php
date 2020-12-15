@@ -18,9 +18,9 @@
       <form method="post" action="{{ route('animals.store') }}">
           @csrf
           <div class="form-group{{ $errors->has('nickname') ? ' has-error' : '' }}">
-            <label for="nickname" class="col-md-4 control-label">{{ trans('app.animal_nickname') }}</label>
+            <label for="nickname" class="control-label">{{ trans('app.animal_nickname') }}</label>
 
-            <div class="col-md-6">
+            
                 <input id="nickname" type="text" class="form-control" name="nickname" value="{{ old('nickname') }}" required autofocus>
 
                 @if ($errors->has('nickname'))
@@ -28,13 +28,13 @@
                         <strong>{{ $errors->first('nickname') }}</strong>
                     </span>
                 @endif
-            </div>
+            
         </div>
 
         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-            <label for="name" class="col-md-4 control-label">{{ trans('app.animal_name') }}</label>
+            <label for="name" class="control-label">{{ trans('app.animal_name') }}</label>
 
-            <div class="col-md-6">
+            
                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required>
 
                 @if ($errors->has('name'))
@@ -42,7 +42,7 @@
                         <strong>{{ $errors->first('name') }}</strong>
                     </span>
                 @endif
-            </div>
+            
         </div>
 
         <!--div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -60,12 +60,13 @@
         </div-->
 
         <div class="form-group{{ $errors->has('gender_id') ? ' has-error' : '' }}">
-            <label for="gender_id" class="col-md-4 control-label">{{ trans('app.animal_gender') }}</label>
+            <label for="gender_id" class="control-label">{{ trans('app.animal_gender') }}</label>
 
-            <div class="col-md-6">
+            
                 {!! FormField::radios('gender_id', [1 => trans('app.male'), 2 => trans('app.female')], ['label' => false]) !!}
-            </div>
+            
         </div>
+        
 
         <!--div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
             <label for="password" class="col-md-4 control-label">{{ trans('auth.password') }}</label>

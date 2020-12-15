@@ -9,24 +9,64 @@ use App\User;
 use App\Animal;
 use Illuminate\Http\Request;
 use App\Http\Requests\Animal\UpdateRequest;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Uuid;
-
+use Illuminate\Support\Facades\Validator;
 class AnimalsController extends Controller
 {
+
+  /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'nickname' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+    }
+
+    public function render($request, Exception $exception)
+    {
+        if ( $exception instanceof \Illuminate\Database\QueryException ) {
+            // show custom view
+            //Or
+            //return response()->json($exception);
+        }
+        return parent::render($request, $exception);
+    }
   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    /*public function index()
     {
         $animals = User::whereNotNull('animal_id')->
                     where('office_id', '=' , Auth::user()->office_id)->
                     get();
         return view('animals.index', compact('animals'));
-    }
+    }*/
 
+    public function index()
+    {
+        $user = auth()->user();
+        if(is_system_admin( $user )){
+            $animals = User::whereNull('office_id')->whereNull('creator_id')->where('admin',false)->get(); 
+        }else{
+            $animals = User::whereNotNull('animal_id')->
+            where('office_id', '=' , Auth::user()->office_id)->get();
+        }
+        return view('animals.index', compact('animals'));
+
+    }
+   
     /**
      * Show the form for creating a new resource.
      *

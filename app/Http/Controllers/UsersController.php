@@ -9,9 +9,26 @@ use App\Couple;
 use Illuminate\Http\Request;
 use App\Http\Requests\Users\UpdateRequest;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Validator;
 class UsersController extends Controller
 {
+
+     /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'nickname' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+    }
+
     /**
      * Search user by keyword.
      *
