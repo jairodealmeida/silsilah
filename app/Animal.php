@@ -14,7 +14,7 @@ class Animal extends Model
         'birth_order',
         'nickname', 
         'gender_id', 
-        'name',
+        'name', 
         'email', 
         'password',
         'address', 
