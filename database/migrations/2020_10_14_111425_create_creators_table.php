@@ -16,11 +16,11 @@ class CreateCreatorsTable extends Migration
     {
         Schema::create('creators', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->integer('broodtotal'); //ninhada
-            $table->date('certifyduedate'); //validade certificado
+            $table->integer('broodtotal')->nullable(); //ninhada
+            $table->date('certifyduedate')->nullable(); //validade certificado
             $table->string('title');
-            $table->string('description');
-            $table->string('manager_id')->nullable();
+            $table->string('description')->nullable();
+            $table->uuid('manager_id')->nullable();
             $table->timestamps();
         });
         // Insert some stuff

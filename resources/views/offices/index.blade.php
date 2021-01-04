@@ -25,9 +25,9 @@
             <td>{{''}}</td>
             <td>{{$office->name}}</td>
             <td>{{$office->nickname}} </td>
-            <td>{{$office->office_id->registerquote}} </td>
-            <td>{{$office->office_id->duedate}} </td>
-            <td>{{$office->office_id->specie}} </td>
+            <td>{{$office->office->registerquote}} </td>
+            <td>{{$office->office->duedate}} </td>
+            <td>{{$office->office->specie}} </td>
             <td>
               {{ link_to_route('offices.edit', trans('app.edit'), [$office->id], ['class' => 'btn btn-warning']) }}
                

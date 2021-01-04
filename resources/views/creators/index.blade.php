@@ -25,10 +25,10 @@
         <tr>
           <td>{{$creator->nickname}}</td>
           <td>{{$creator->name}}</td>
-          <td>{{$creator->creator_id->broodtotal}}</td>
-          <td>{{$creator->creator_id->certifyduedate}} </td>
-          <td>{{$creator->creator_id->title}} </td>
-          <td>{{$creator->creator_id->description}} </td>
+          <td>{{$creator->creator->broodtotal}}</td>
+          <td>{{$creator->creator->certifyduedate}} </td>
+          <td>{{$creator->creator->title}} </td>
+          <td>{{$creator->creator->description}} </td>
           <td>{{$creator->email}} </td>
 
            

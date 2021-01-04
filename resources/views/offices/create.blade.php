@@ -52,13 +52,7 @@
                   @endif
               
             </div>
-            <!--div class="form-group{{ $errors->has('gender_id') ? ' has-error' : '' }}">
-               <label for="gender_id">{{ trans('app.gender') }}</label>
-               
-               <div class="col-md-12">
-                   {!! FormField::radios('gender_id', [1 => trans('app.male'), 2 => trans('app.female')], ['label' => false]) !!}
-               </div>
-               </div-->
+ 
             <div class="form-group{{ $errors->has('duedate') ? ' has-error' : '' }}">
                <label for="duedate">{{ trans('app.duedate') }}</label>
               
@@ -84,24 +78,11 @@
 
             <div class="form-group">
                 <label for="specie">{{ trans('app.specie') }}</label>
-
                 <select id='specie' name="specie" class="form-control">
-                    
                   @foreach($species as $specie)
                     <option value='{{ $specie->title }}'>{{ $specie->title }}</option>
-                    
                   @endforeach
                </select>
-               
-            <!--div class="form-group{{ $errors->has('gender_id') ? ' has-error' : '' }}">
-               <label for="gender_id">{{ trans('app.gender') }}</label>
-               
-               <div class="col-md-12">
-                   {!! FormField::radios('gender_id', [1 => trans('app.male'), 2 => trans('app.female')], ['label' => false]) !!}
-               </div>
-             </div-->
-               
-               
             </div>
 
             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">

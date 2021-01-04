@@ -7,6 +7,9 @@ use Storage;
 use App\Couple;
 use App\User;
 use App\Animal;
+use App\Race;
+use App\Specie;
+use App\Proprietary;
 use Illuminate\Http\Request;
 use App\Http\Requests\Animal\UpdateRequest;
 use Exception;
@@ -35,38 +38,35 @@ class AnimalsController extends Controller
     public function render($request, Exception $exception)
     {
         if ( $exception instanceof \Illuminate\Database\QueryException ) {
-            // show custom view
-            //Or
-            //return response()->json($exception);
         }
         return parent::render($request, $exception);
     }
-  /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    /*public function index()
-    {
-        $animals = User::whereNotNull('animal_id')->
-                    where('office_id', '=' , Auth::user()->office_id)->
-                    get();
-        return view('animals.index', compact('animals'));
-    }*/
-
     public function index()
     {
         $user = auth()->user();
+        $animals = null;
         if(is_system_admin( $user )){
-            $animals = User::whereNull('office_id')->whereNull('creator_id')->where('admin',false)->get(); 
+            $animals = User::whereNotNull('animal_id')->get();
         }else{
-            $animals = User::whereNotNull('animal_id')->
-            where('office_id', '=' , Auth::user()->office_id)->get();
+            $animals = User::where('office_id', '=' , $user->office_id)->get();
+        }
+        foreach ($animals as $animal)
+        {
+           $animal->animal =  $this->getAnimal( $animal->animal_id );
         }
         return view('animals.index', compact('animals'));
-
     }
-   
+
+    private function getAnimal(string $animal_id)
+    {
+        return Animal::find($animal_id);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -74,31 +74,16 @@ class AnimalsController extends Controller
      */
     public function create()
     {
-        return view('animals.create');
-    }
- /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function register(array $data)
-    {
 
-        $animal = Animal::create([
-            'id' => Uuid::uuid4()->toString()
-        ]);
-        $animal->save();
-        $user = User::create([
-            'id' => Uuid::uuid4()->toString(),
-            'nickname' => $data['nickname'],
-            'name' => $data['name'],
-            'animal_id' => $animal->id
-        ]);
-        $user->manager_id = $user->id;
-        $user->save();
-        return $user;
+        /*$species = Specie::all();
+        $races = Race::all();*/
+        $proprietaries = Proprietary::all();
+        $races = Race::all();
+        //return view('offices.create', compact('species'));
+        return view('animals.create',
+             compact('proprietaries','races'));
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -107,26 +92,27 @@ class AnimalsController extends Controller
      */
     public function store(Request $request)
     {
-        /*$request->validate([
-            'name'=>'required',
-            'description'=>'required'
-        ]);*/
+        $animalId = Uuid::uuid4()->toString();
+        $animal = new Animal([
+            'id' => $animalId
         
-        $animal = Animal::create([
-            'id' => Uuid::uuid4()->toString()
         ]);
+        $animal->genotype = $request->get('genotype');
+        $animal->proprietary_id = $request->get('proprietary');
+        $animal->race_id = $request->get('race');
+        $animal->manager_id = auth()->id();
         $animal->save();
 
-        $user = new User([
-            'id' => Uuid::uuid4()->toString(),
+        $userId = Uuid::uuid4()->toString();
+        $user = User::create([
+            'id' => $userId,
             'nickname' => $request->get('nickname'),
             'name' => $request->get('name'),
             'gender_id' => $request->get('gender_id'),
-            'animal_id' => $animal->id,
-            'office_id' => Auth::user()->office_id,
         ]);
+        $user->manager_id = auth()->id();
+        $user->animal_id = $animalId;
         $user->save();
-        $user->manager_id = $user->id;
         return redirect('/animals')->with('success', 'Salvo com sucesso!');
     }
 
@@ -150,6 +136,7 @@ class AnimalsController extends Controller
     public function edit($id)
     {
         $animal = User::find($id);
+        $animal->animal =  $this->getAnimal( $animal->animal_id );
         return view('animals.edit', compact('animal'));  
     }
 
@@ -163,14 +150,21 @@ class AnimalsController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required',
-            'description'=>'required'
+            'name'=>'required'
         ]);
 
-        $animal = User::find($id);
-        $animal->name =  $request->get('name');
-        $animal->description = $request->get('description');
-        $animal->save();
+        $animaluser = User::find($id);
+        $animaluser->name =  $request->get('name');
+        $animaluser->description = $request->get('description');
+        $animaluser->manager_id =  auth()->id();
+        $animaluser->save();
+
+        $animal =  $this->getAnimal( $animaluser->animal_id );
+        $animal->race_id = $request->get('race');
+        $animal->genotype = $request->get('genotype');
+        $animal->manager_id =  auth()->id();
+        $animal->save();    
+
         return redirect('/animals')->with('success', 'Alterado com sucesso!');
     }
 
@@ -182,7 +176,9 @@ class AnimalsController extends Controller
      */
     public function destroy($id)
     {
-        $animal = User::find($id);
+        $user = User::find($id);
+        $animal = Animal::find($user->animal_id);
+        $user->delete();
         $animal->delete();
 
         return redirect('/animals')->with('success', 'Excluido com sucesso!');

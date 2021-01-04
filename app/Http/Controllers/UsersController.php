@@ -6,10 +6,13 @@ use DB;
 use Storage;
 use App\User;
 use App\Couple;
+use App\Creator;
+use App\Proprietary;
 use Illuminate\Http\Request;
 use App\Http\Requests\Users\UpdateRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use PDF;
 class UsersController extends Controller
 {
 
@@ -67,6 +70,8 @@ class UsersController extends Controller
     {
         $usersMariageList = $this->getUserMariageList($user);
         $allMariageList = $this->getAllMariageList();
+        $creatorPersonList = $this->getCreatorList();
+        $proprietaryPersonList = $this->getProprietaryList();
         $malePersonList = $this->getPersonList(1);
         $femalePersonList = $this->getPersonList(2);
 
@@ -76,7 +81,38 @@ class UsersController extends Controller
             'malePersonList'   => $malePersonList,
             'femalePersonList' => $femalePersonList,
             'allMariageList'   => $allMariageList,
+            'creatorPersonList' => $creatorPersonList,
+            'proprietaryPersonList' => $proprietaryPersonList,
         ]);
+    }
+
+
+ /**
+     * Display the specified User.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\View\View
+     */
+  
+    public function pdf(User $user)
+    {
+        $usersMariageList = $this->getUserMariageList($user);
+        $allMariageList = $this->getAllMariageList();
+        $malePersonList = $this->getPersonList(1);
+        $femalePersonList = $this->getPersonList(2);
+        //$students =  $this->getAllMariageList();
+        //print_r($students);
+        $pdf = PDF::loadView('users.list', [
+            'user'             => $user,
+            'usersMariageList' => $usersMariageList,
+            'malePersonList'   => $malePersonList,
+            'femalePersonList' => $femalePersonList,
+            'allMariageList'   => $allMariageList,
+        ]);
+        //$pdf = PDF::loadView('users.list', compact('usersMariageList'));
+        
+        $pdf->save(storage_path().'pedigree.pdf');
+        return $pdf->download('pedigree.pdf');
     }
 
     /**
@@ -128,14 +164,21 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        $this->authorize('edit', $user);
+        
+        $creators = Creator::all();
+        $proprietaries = Proprietary::all();
 
+        $this->authorize('edit', $user);
         $replacementUsers = [];
         if (request('action') == 'delete') {
             $replacementUsers = $this->getPersonList($user->gender_id);
         }
 
-        return view('users.edit', compact('user', 'replacementUsers'));
+        return view('users.edit', compact(
+            'user', 
+            'replacementUsers', 
+            'creators', 
+            'proprietaries'));
     }
 
     /**
@@ -147,6 +190,7 @@ class UsersController extends Controller
      */
     public function update(UpdateRequest $request, User $user)
     {
+        $user->creator_id = $request->get('creator');
         $user->update($request->validated());
 
         return redirect()->route('users.show', $user->id);
@@ -256,6 +300,30 @@ class UsersController extends Controller
     private function getPersonList(int $genderId)
     {
         return User::where('gender_id', $genderId)->pluck('nickname', 'id');
+    }
+
+    /**
+     * Get User list based on gender.
+     *
+     * @param int $genderId
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    private function getCreatorList()
+    {
+        return Creator::all()->pluck('title', 'id');
+    }
+
+    /**
+     * Get User list based on gender.
+     *
+     * @param int $genderId
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    private function getProprietaryList()
+    {
+        return Proprietary::all()->pluck('name', 'id');
     }
 
     /**

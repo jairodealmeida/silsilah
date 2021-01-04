@@ -51,7 +51,7 @@
                 <label for="broodtotal">{{ trans('app.broodtotal') }}</label>
     
     
-                    <input id="broodtotal" type="number" class="form-control" name="broodtotal" value="{{$creator->creator_id->broodtotal}}"  min="1" value="120" max="99999" required>
+                    <input id="broodtotal" type="number" class="form-control" name="broodtotal" value="{{$creator->creator->broodtotal}}"  min="1" value="120" max="99999" required>
     
                     @if ($errors->has('broodtotal'))
                         <span class="help-block">
@@ -63,7 +63,7 @@
             <div class="form-group{{ $errors->has('certifyduedate') ? ' has-error' : '' }}">
                 <label for="certifyduedate">{{ trans('app.certifyduedate') }}</label>
                
-                   <input id="certifyduedate" type="date" class="form-control" name="certifyduedate" value="{{$creator->creator_id->certifyduedate}}" required>
+                   <input id="certifyduedate" type="date" class="form-control" name="certifyduedate" value="{{$creator->creator->certifyduedate}}" required>
                    @if ($errors->has('certifyduedate'))
                    <span class="help-block">
                    <strong>{{ $errors->first('certifyduedate') }}</strong>
@@ -76,7 +76,7 @@
                 <label for="title">{{ trans('app.title') }}</label>
     
     
-                    <input id="title" type="text" class="form-control" name="title" value="{{$creator->creator_id->title}}"   required>
+                    <input id="title" type="text" class="form-control" name="title" value="{{$creator->creator->title}}"   required>
     
                     @if ($errors->has('title'))
                         <span class="help-block">
@@ -89,7 +89,7 @@
             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                 <label for="description" class="control-label">{{ trans('user.description') }}</label>
 
-                    <input id="description" type="text" class="form-control" name="description" value="{{$creator->creator_id->description}}" required>
+                    <input id="description" type="text" class="form-control" name="description" value="{{$creator->creator->description}}" required>
                     @if ($errors->has('description'))
                         <span class="help-block">
                             <strong>{{ $errors->first('description') }}</strong>

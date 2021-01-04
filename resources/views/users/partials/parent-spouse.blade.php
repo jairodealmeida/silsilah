@@ -3,6 +3,65 @@
 
     <table class="table">
         <tbody>
+
+            <tr>
+                <th class="col-sm-4">{{ __('app.creator') }}</th>
+                <td class="col-sm-8">
+                    @can ('edit', $user)
+                    
+                        @if (request('action') == 'set_creator')
+                        {{ Form::open(['route' => ['family-actions.set-creator', $user->id]]) }}
+                        {!! FormField::select('set_creator_id', $creatorPersonList, ['label' => false, 'value' => $user->creator_id, 'placeholder' => __('app.select_from_existing_creators')]) !!}
+                        <div class="input-group">
+                            {{ Form::text('set_creator', null, ['class' => 'form-control input-sm', 'placeholder' => __('app.enter_new_name')]) }}
+                            <span class="input-group-btn">
+                                {{ Form::submit(__('app.update'), ['class' => 'btn btn-info btn-sm', 'id' => 'set_creator_button']) }}
+                                {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-default btn-sm']) }}
+                            </span>
+                        </div>
+                        {{ Form::close() }}
+                        @else
+                            {{ $user->creatorLink() }}
+                            <div class="pull-right">
+                                {{ link_to_route('users.show', __('user.set_creator'), [$user->id, 'action' => 'set_creator'], ['class' => 'btn btn-link btn-xs']) }}
+                            </div>
+                        @endif
+                    @else
+                        {{ $user->creatorLink() }}
+                    @endcan
+                </td>
+            </tr>
+
+
+            <tr>
+                <th class="col-sm-4">{{ __('app.proprietary') }}</th>
+                <td class="col-sm-8">
+                    @can ('edit', $user)
+                    
+                        @if (request('action') == 'set_proprietary')
+                        {{ Form::open(['route' => ['family-actions.set-proprietary', $user->id]]) }}
+                        {!! FormField::select('set_proprietary_id', $proprietaryPersonList, ['label' => false, 'value' => $user->proprietary_id, 'placeholder' => __('app.select_from_existing_proprietaries')]) !!}
+                        <div class="input-group">
+                            {{ Form::text('set_proprietary', null, ['class' => 'form-control input-sm', 'placeholder' => __('app.enter_new_name')]) }}
+                            <span class="input-group-btn">
+                                {{ Form::submit(__('app.update'), ['class' => 'btn btn-info btn-sm', 'id' => 'set_proprietary_button']) }}
+                                {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-default btn-sm']) }}
+                            </span>
+                        </div>
+                        {{ Form::close() }}
+                        @else
+                            {{ $user->proprietaryLink() }}
+                            <div class="pull-right">
+                                {{ link_to_route('users.show', __('user.set_proprietary'), [$user->id, 'action' => 'set_proprietary'], ['class' => 'btn btn-link btn-xs']) }}
+                            </div>
+                        @endif
+                    @else
+                        {{ $user->proprietaryLink() }}
+                    @endcan
+                </td>
+            </tr>
+
+            
             <tr>
                 <th class="col-sm-4">{{ __('user.father') }}</th>
                 <td class="col-sm-8">

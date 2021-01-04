@@ -24,29 +24,34 @@
         </tr>
     </thead>
     <tbody>
-        @forelse($proprietaries as $proprietary)
+        @forelse($proprietaries as $p)
         <tr>
+      
             <td>{{''}}</td>
-            <td>{{$proprietary->name}}</td>
-            <td>{{$proprietary->cpf}} </td>
-            <td>{{$proprietary->rg}} </td>
-            <td>{{$proprietary->phone}} </td>
-            <td>{{$proprietary->mobile}} </td>
-            <td>{{$proprietary->address}} </td>
-            <td>{{$proprietary->num_address}} </td>
-            <td>{{$proprietary->comp_address}} </td>
-            <td>{{$proprietary->cep}} </td>
+            <td>{{$p->name}}</td>
+            <td>{{$p->proprietary->cpf}} </td>
+            <td>{{$p->proprietary->rg}} </td>
+            <td>{{$p->proprietary->phone}} </td>
+            <td>{{$p->proprietary->mobile}} </td>
+            <td>{{$p->proprietary->address}} </td>
+            <td>{{$p->proprietary->num_address}} </td>
+            <td>{{$p->proprietary->comp_address}} </td>
+            <td>{{$p->proprietary->cep}} </td>
 
             <td>
-              {{ link_to_route('users.edit', trans('app.edit'), [$proprietary->id], ['class' => 'btn btn-warning']) }}
+              {{ link_to_route('proprietaries.edit', trans('app.edit'), [$p->id], ['class' => 'btn btn-warning']) }}
                
             </td>
             <td>
-                <form action="{{ route('proprietaries.destroy', $proprietary->id)}}" method="post">
+              
+           
+                <form action="{{ route('proprietaries.destroy', $p->id)}}" method="post">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger" type="submit">Remover</button>
+
                 </form>
+               
             </td>
         </tr>
         @empty

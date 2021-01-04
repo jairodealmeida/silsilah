@@ -22,12 +22,15 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('home', 'HomeController@index')->name('home');
 Route::get('profile', 'HomeController@index')->name('profile');
+Route::post('family-actions/{user}/set-proprietary', 'FamilyActionsController@setProprietary')->name('family-actions.set-proprietary');
+Route::post('family-actions/{user}/set-creator', 'FamilyActionsController@setCreator')->name('family-actions.set-creator');
 Route::post('family-actions/{user}/set-father', 'FamilyActionsController@setFather')->name('family-actions.set-father');
 Route::post('family-actions/{user}/set-mother', 'FamilyActionsController@setMother')->name('family-actions.set-mother');
 Route::post('family-actions/{user}/add-child', 'FamilyActionsController@addChild')->name('family-actions.add-child');
 Route::post('family-actions/{user}/add-wife', 'FamilyActionsController@addWife')->name('family-actions.add-wife');
 Route::post('family-actions/{user}/add-husband', 'FamilyActionsController@addHusband')->name('family-actions.add-husband');
 Route::post('family-actions/{user}/set-parent', 'FamilyActionsController@setParent')->name('family-actions.set-parent');
+
 
 Route::get('profile-search', 'UsersController@search')->name('users.search');
 Route::get('users/{user}', 'UsersController@show')->name('users.show');
@@ -37,10 +40,13 @@ Route::get('users/{user}/chart', 'UsersController@chart')->name('users.chart');
 Route::get('users/{user}/tree', 'UsersController@tree')->name('users.tree');
 Route::patch('users/{user}/photo-upload', 'UsersController@photoUpload')->name('users.photo-upload');
 Route::delete('users/{user}', 'UsersController@destroy')->name('users.destroy');
+Route::get('users-print', 'UsersController@print')->name('users.print');
+Route::get('users-pdf','UsersController@pdf')->name('users.pdf');
 
 Route::get('users/{user}/marriages', 'UserMarriagesController@index')->name('users.marriages');
 
 Route::get('users/{user}/pedigree', 'UserPedigreeController@index')->name('users.pedigree');
+Route::get('users/{user}/qrcode', 'UserPedigreeController@qrcode')->name('users.qrcode');
 
 Route::get('birthdays', 'BirthdayController@index')->name('birthdays.index');
 
@@ -59,13 +65,7 @@ Route::patch('race/{race}', ['as' => 'races.update', 'races' => 'RaceController@
 //Route::apiResource('races', 'RaceController');
 
 
-Route::get('proprietaries', 'ProprietaryController@index')->name('proprietaries.index');
-Route::get('proprietaries/create', 'ProprietaryController@create')->name('proprietaries.create');
-Route::post('proprietaries', 'ProprietaryController@store')->name('proprietaries.store');
-Route::get('proprietaries/{proprietary}', 'ProprietaryController@show')->name('proprietaries.show');
-Route::get('proprietaries/{proprietary}/edit', 'ProprietaryController@edit')->name('proprietaries.edit');
-Route::patch('proprietaries/{proprietary}', 'ProprietaryController@update')->name('proprietaries.update');
-Route::delete('proprietaries/{proprietary}', 'ProprietaryController@destroy')->name('proprietaries.destroy');
+
 
 
 
@@ -130,6 +130,14 @@ Route::patch('offices/{office}', 'OfficesController@update')->name('offices.upda
 Route::delete('offices/{office}', 'OfficesController@destroy')->name('offices.destroy');
 Route::post('offices/{office}', 'OfficesController@block')->name('offices.block');
 
+
+Route::get('proprietaries', 'ProprietaryController@index')->name('proprietaries.index');
+Route::get('proprietaries/create', 'ProprietaryController@create')->name('proprietaries.create');
+Route::post('proprietaries', 'ProprietaryController@store')->name('proprietaries.store');
+Route::get('proprietaries/{proprietary}', 'ProprietaryController@show')->name('proprietaries.show');
+Route::get('proprietaries/{proprietary}/edit', 'ProprietaryController@edit')->name('proprietaries.edit');
+Route::patch('proprietaries/{proprietary}', 'ProprietaryController@update')->name('proprietaries.update');
+Route::delete('proprietaries/{proprietary}', 'ProprietaryController@destroy')->name('proprietaries.destroy');
 /**
  * Admin only routes
  */

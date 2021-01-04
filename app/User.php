@@ -82,6 +82,33 @@ class User extends Authenticatable
         return $this->gender_id == 1 ? trans('app.male_code') : trans('app.female_code');
     }
 
+
+    public function setCreator(User $creator)
+    {
+        if ($creator!=null) {
+            if ($creator->exists == false) {
+                $creator->save();
+            }
+            $this->creator_id = $creator->id;
+            $this->save();
+            return $creator;
+        }
+        return false;
+    }
+
+    public function setProprietary(User $proprietary)
+    {
+        if ($proprietary!=null) {
+            if ($proprietary->exists == false) {
+                $proprietary->save();
+            }
+            $this->proprietary_id = $proprietary->id;
+            $this->save();
+            return $proprietary;
+        }
+        return false;
+    }
+
     public function setFather(User $father)
     {
         if ($father->gender_id == 1) {
@@ -141,10 +168,29 @@ class User extends Authenticatable
         return link_to_route('users.'.$type, $this->name, [$this->id]);
     }
 
+    public function proprietaryLink()
+    {
+        if($this->proprietary && $this->proprietary->name){
+            return $this->proprietary_id ? link_to_route('users.show', $this->proprietary->name, [$this->proprietary_id]) : null;
+        }else{
+            return null;
+        }
+    }
+
+    public function creatorLink()
+    {
+        if($this->creator && $this->creator->title){
+            return $this->creator_id ? link_to_route('users.show', $this->creator->title, [$this->creator_id]) : null;
+        }else{
+            return null;
+        }
+    }
+
     public function fatherLink()
     {
         return $this->father_id ? link_to_route('users.show', $this->father->name, [$this->father_id]) : null;
     }
+
 
     public function motherLink()
     {

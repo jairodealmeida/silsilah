@@ -19,6 +19,19 @@ class Proprietary extends Model
         'cep', 
         'manager_id'
     ];
+    
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
 
+     /**
+     * The "type" of the primary key ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
     
 }

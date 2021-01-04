@@ -22,7 +22,7 @@
                 <label for="name" class="col-md-4 control-label">{{ trans('user.name') }}</label>
 
                 <div class="col-md-6">
-                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                    <input id="name" type="text" class="form-control" name="name" value="{{  $proprietary->proprietary->name  }}" required autofocus>
 
                     @if ($errors->has('name'))
                         <span class="help-block">
@@ -36,7 +36,7 @@
                 <label for="cpf" class="col-md-4 control-label">{{ trans('user.cpf') }}</label>
 
                 <div class="col-md-6">
-                    <input id="cpf" type="text" class="form-control" name="cpf" value="{{ old('cpf') }}" required>
+                    <input id="cpf" type="text" class="form-control" name="cpf" value="{{ $proprietary->proprietary->cpf }}" required>
 
                     @if ($errors->has('cpf'))
                         <span class="help-block">
@@ -50,7 +50,7 @@
                 <label for="rg" class="col-md-4 control-label">{{ trans('user.rg') }}</label>
 
                 <div class="col-md-6">
-                    <input id="rg" type="text" class="form-control" name="rg" value="{{ old('rg') }}" required>
+                    <input id="rg" type="text" class="form-control" name="rg" value="{{ $proprietary->proprietary->rg }}" required>
 
                     @if ($errors->has('rg'))
                         <span class="help-block">
@@ -64,7 +64,7 @@
                 <label for="phone" class="col-md-4 control-label">{{ trans('user.phone') }}</label>
 
                 <div class="col-md-6">
-                    <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}" required>
+                    <input id="phone" type="text" class="form-control" name="phone" value="{{ $proprietary->proprietary->phone }}" required>
 
                     @if ($errors->has('phone'))
                         <span class="help-block">
@@ -79,7 +79,7 @@
                 <label for="mobile" class="col-md-4 control-label">{{ trans('user.mobile') }}</label>
 
                 <div class="col-md-6">
-                    <input id="mobile" type="text" class="form-control" name="mobile" value="{{ old('mobile') }}" required>
+                    <input id="mobile" type="text" class="form-control" name="mobile" value="{{ $proprietary->proprietary->mobile }}" required>
 
                     @if ($errors->has('mobile'))
                         <span class="help-block">
@@ -93,7 +93,7 @@
                 <label for="address" class="col-md-4 control-label">{{ trans('user.address') }}</label>
 
                 <div class="col-md-6">
-                    <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required>
+                    <input id="address" type="text" class="form-control" name="address" value="{{ $proprietary->proprietary->address }}" required>
 
                     @if ($errors->has('address'))
                         <span class="help-block">
@@ -107,7 +107,7 @@
                 <label for="num_address" class="col-md-4 control-label">{{ trans('user.num_address') }}</label>
 
                 <div class="col-md-6">
-                    <input id="num_address" type="text" class="form-control" name="num_address" value="{{ old('num_address') }}" required>
+                    <input id="num_address" type="text" class="form-control" name="num_address" value="{{ $proprietary->proprietary->num_address }}" required>
 
                     @if ($errors->has('num_address'))
                         <span class="help-block">
@@ -121,7 +121,7 @@
                 <label for="comp_address" class="col-md-4 control-label">{{ trans('user.comp_address') }}</label>
 
                 <div class="col-md-6">
-                    <input id="comp_address" type="text" class="form-control" name="comp_address" value="{{ old('comp_address') }}" required>
+                    <input id="comp_address" type="text" class="form-control" name="comp_address" value="{{ $proprietary->proprietary->comp_address }}" required>
 
                     @if ($errors->has('comp_address'))
                         <span class="help-block">
@@ -135,7 +135,7 @@
                 <label for="cep" class="col-md-4 control-label">{{ trans('user.cep') }}</label>
 
                 <div class="col-md-6">
-                    <input id="cep" type="text" class="form-control" name="cep" value="{{ old('cep') }}" required>
+                    <input id="cep" type="text" class="form-control" name="cep" value="{{ $proprietary->proprietary->cep }}" required>
 
                     @if ($errors->has('cep'))
                         <span class="help-block">

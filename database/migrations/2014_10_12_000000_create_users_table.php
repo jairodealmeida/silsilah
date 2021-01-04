@@ -36,11 +36,18 @@ class CreateUsersTable extends Migration
             $table->uuid('manager_id')->nullable();
             $table->rememberToken();
             $table->boolean('admin')->default(0);
-            $table->uuid('creator_id')->nullable();
-            $table->uuid('animal_id')->nullable();
+
             $table->uuid('office_id')->nullable();
+            $table->uuid('creator_id')->nullable();
+            $table->uuid('proprietary_id')->nullable();
+            $table->uuid('animal_id')->nullable();
+            
             $table->boolean('blocked')->default(0);
             $table->timestamps();
+            //$table->foreign('creator_id')->references('id')->on('creators')->onDelete('cascade');
+            //$table->foreign('proprietary_id')->references('id')->on('proprietaries')->onDelete('cascade');
+            //$table->foreign('animal_id')->references('id')->on('animals')->onDelete('cascade');
+            //$table->foreign('office_id')->references('id')->on('offices')->onDelete('cascade');
         });
         //usuario: jairodealmeida@gmail.com.br
         //senha: gatobras@2020

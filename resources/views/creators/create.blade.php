@@ -101,15 +101,7 @@
                 @endif
 
         </div>
-        <!--div class="form-group">
-            <label for="proprietary">{{ trans('app.proprietary') }}</label>
-            <select id='proprietary' name="proprietary" class="form-control">
-              <option value='0'>Selecione</option>
-              @foreach($proprietaries as $proprietary)
-                <option value='{{ $proprietary->id }}'>{{ $proprietary->title }}</option>
-              @endforeach
-           </select>
-        </div-->
+        
 
         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
             <label for="email" class="control-label">{{ trans('user.email') }}</label>

@@ -13,9 +13,10 @@
           <td>{{ trans('app.id') }}</td>
           <td>{{ trans('app.name') }}</td>
           <td>{{ trans('app.nickname') }}</td>
-          <td>{{ trans('app.genotype') }}</td>
+          <td>Sexo</td>
           <td>{{ trans('app.father_name') }}</td>
           <td>{{ trans('app.mother_name') }}</td>
+          <td>{{ trans('app.office') }}</td>
           <td>{{ trans('app.brooding') }}</td>
           <td>{{ trans('app.parents') }}</td>
           <td>{{ trans('app.proprietary') }}</td>
@@ -36,6 +37,7 @@
             <td>{{$animal->office_id}} </td>
             <td>{{$animal->spouses_count}} </td>
             <td>{{$animal->managed_user}} </td>
+            <td>{{$animal->proprietary_id}} </td>
             <td>{{$animal->managed_couple}} </td>
 
             <td>

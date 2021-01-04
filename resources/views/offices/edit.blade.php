@@ -15,7 +15,6 @@
         </div>
         <br /> 
         @endif
-        {{$office}}
         <form method="post" action="{{ route('offices.update', $office->id) }}">
             @method('PATCH') 
             @csrf
@@ -52,17 +51,11 @@
                    @endif
                
              </div>
-             <!--div class="form-group{{ $errors->has('gender_id') ? ' has-error' : '' }}">
-                <label for="gender_id">{{ trans('app.gender') }}</label>
-                
-                <div class="col-md-12">
-                    {!! FormField::radios('gender_id', [1 => trans('app.male'), 2 => trans('app.female')], ['label' => false]) !!}
-                </div>
-                </div-->
+         
              <div class="form-group{{ $errors->has('duedate') ? ' has-error' : '' }}">
                 <label for="duedate">{{ trans('app.duedate') }}</label>
                
-                   <input id="duedate" type="date" class="form-control" name="duedate" value="{{  $office->duedate }}" required>
+                   <input id="duedate" type="date" class="form-control" name="duedate" value="{{  $office->office->duedate }}" required>
                    @if ($errors->has('duedate'))
                    <span class="help-block">
                    <strong>{{ $errors->first('duedate') }}</strong>
@@ -73,7 +66,7 @@
              <div class="form-group{{ $errors->has('registerquote') ? ' has-error' : '' }}">
                 <label for="registerquote">{{ trans('app.registerquote') }}</label>
                
-                   <input type="number" id="registerquote"  class="form-control" name="registerquote" min="1" value="120" max="99999" value="{{  $office->registerquote }}" required>
+                   <input type="number" id="registerquote"  class="form-control" name="registerquote" min="1" value="120" max="99999" value="{{  $office->office->registerquote }}" required>
                    @if ($errors->has('registerquote'))
                    <span class="help-block">
                    <strong>{{ $errors->first('registerquote') }}</strong>
@@ -84,24 +77,15 @@
  
              <div class="form-group">
                  <label for="specie">{{ trans('app.specie') }}</label>
- 
                  <select id='specie' name="specie" class="form-control">
-                     
                    @foreach($species as $specie)
-                     <option value='{{ $specie->title }}'>{{ $specie->title }}</option>
-                     
+                     @if ($office->office!=null && $office->office->specie == $specie)
+                           <option value='{{ $specie->title }}' selected>{{ $specie->title }}</option>
+                        @else
+                           <option value='{{ $specie->title }}'>{{ $specie->title }}</option>
+                     @endif
                    @endforeach
                 </select>
-                
-             <!--div class="form-group{{ $errors->has('gender_id') ? ' has-error' : '' }}">
-                <label for="gender_id">{{ trans('app.gender') }}</label>
-                
-                <div class="col-md-12">
-                    {!! FormField::radios('gender_id', [1 => trans('app.male'), 2 => trans('app.female')], ['label' => false]) !!}
-                </div>
-              </div-->
-                
-                
              </div>
  
              <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">

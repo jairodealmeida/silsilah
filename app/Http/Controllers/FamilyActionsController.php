@@ -4,11 +4,96 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Couple;
+use App\Creator;
+use App\Proprietary;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
 
 class FamilyActionsController extends Controller
 {
+
+
+ /**
+     * Set creator for a user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function setCreator(Request $request, User $user)
+    {
+        
+        /*$request->validate([
+            'set_creator_id' => 'nullable',
+            'set_creator'    => 'required_without:set_creator_id|max:255',
+        ]);*/
+
+        if ($request->get('set_creator_id')) {
+            $user->creator_id = $request->get('set_creator_id');
+            $user->save();
+        } else {
+            $creatorid = Uuid::uuid4()->toString();
+            $creator = new Creator;
+            $creator->id = $creatorid;
+            $creator->title = $request->get('set_creator');
+            $creator->manager_id = auth()->id();
+            $creator->save();
+
+            $userid = Uuid::uuid4()->toString();
+            $creatorUser = new User;
+            $creatorUser->id = $userid;
+            $creatorUser->name = $request->get('set_creator');
+            $creatorUser->nickname = $request->get('set_creator');
+            $creatorUser->creator_id = $creatorid;
+            $creatorUser->manager_id = auth()->id();
+            //$creatorUser->save();
+
+            $user->setCreator($creatorUser);
+        }
+
+        return back();
+    }
+
+/**
+     * Set proprietary for a user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function setProprietary(Request $request, User $user)
+    {
+        $request->validate([
+            'set_proprietary_id' => 'nullable',
+            'set_proprietary'    => 'required_without:set_proprietary_id|max:255',
+        ]);
+
+        if ($request->get('set_proprietary_id')) {
+            $user->proprietary_id = $request->get('set_proprietary_id');
+            $user->save();
+        } else {
+            $proprietaryid = Uuid::uuid4()->toString();
+            $proprietary = new Proprietary;
+            $proprietary->id = $proprietaryid;
+            $proprietary->name = $request->get('set_proprietary') ? $request->get('set_proprietary'): 'Temp';
+            $proprietary->manager_id = auth()->id();
+            $proprietary->save();
+
+            $userid = Uuid::uuid4()->toString();
+            $proprietaryUser = new User;
+            $proprietaryUser->id = $userid;
+            $proprietaryUser->name = $request->get('set_proprietary') ? $request->get('set_proprietary'): 'Temp';
+            $proprietaryUser->nickname = $request->get('set_proprietary') ? $request->get('set_proprietary'): 'Temp';
+            $proprietaryUser->proprietary_id = $proprietaryid;
+            $proprietaryUser->manager_id = auth()->id();
+            //print_r$proprietaryUser->save();
+
+            $user->setProprietary($proprietaryUser);
+        }
+
+        return back();
+    }
+
     /**
      * Set father for a user.
      *

@@ -27,7 +27,7 @@ class CreateRacesTable extends Migration
         });
         if (Schema::hasTable('races'))
         {
-            DB::table('races')->insert(array('id'=>1,'name'=>'Abissínio','englishname'=>'Abyssinian','specie'=>2,'origin'=>'Etiópia','description'=>''));
+            /*DB::table('races')->insert(array('id'=>1,'name'=>'Abissínio','englishname'=>'Abyssinian','specie'=>2,'origin'=>'Etiópia','description'=>''));
             DB::table('races')->insert(array('id'=>2,'name'=>'Angorá turco','englishname'=>'Turkish angora','specie'=>2,'origin'=>'Turquia','description'=>''));
             DB::table('races')->insert(array('id'=>3,'name'=>'Asiático de Pelo Semi-Longo','englishname'=>'Asian Semi-longhair','specie'=>2,'origin'=>'Reino Unido','description'=>''));
             DB::table('races')->insert(array('id'=>4,'name'=>'Azul Russo','englishname'=>'Russian Blue','specie'=>2,'origin'=>'Rússia','description'=>''));
@@ -37,7 +37,8 @@ class CreateRacesTable extends Migration
             DB::table('races')->insert(array('id'=>8,'name'=>'Bobtail americano','englishname'=>'American Bobtail','specie'=>2,'origin'=>'Estados Unidos','description'=>''));
             DB::table('races')->insert(array('id'=>9,'name'=>'Bobtail japonês','englishname'=>'Japanese Bobtail','specie'=>2,'origin'=>'Japão','description'=>''));
             DB::table('races')->insert(array('id'=>10,'name'=>'Bombaim','englishname'=>'Bombay','specie'=>2,'origin'=>'Estados Unidos','description'=>''));
-            /*DB::table('races')->insert(array('id'=>12,'name'=>'Burmês','englishname'=>'Burmese','specie'=>2,'origin'=>'Tailândia','description'=>''));
+            */
+            DB::table('races')->insert(array('id'=>12,'name'=>'Burmês','englishname'=>'Burmese','specie'=>2,'origin'=>'Tailândia','description'=>''));
             DB::table('races')->insert(array('id'=>13,'name'=>'Burmila','englishname'=>'Burmilla','specie'=>2,'origin'=>'Reino Unido','description'=>''));
             DB::table('races')->insert(array('id'=>14,'name'=>'California Spangled','englishname'=>'California Spangled','specie'=>2,'origin'=>'Estados Unidos','description'=>''));
             DB::table('races')->insert(array('id'=>15,'name'=>'Cingapura','englishname'=>'Singapura','specie'=>2,'origin'=>'Singapura','description'=>''));
@@ -109,7 +110,7 @@ class CreateRacesTable extends Migration
             DB::table('races')->insert(array('id'=>81,'name'=>'Toyger','englishname'=>'Toyger','specie'=>2,'origin'=>'Estados Unidos','description'=>''));
             DB::table('races')->insert(array('id'=>82,'name'=>'Van Turco','englishname'=>'Turkish Van','specie'=>2,'origin'=>'Turquia','description'=>''));
             DB::table('races')->insert(array('id'=>83,'name'=>'Wirehair Americano','englishname'=>'American Wirehair','specie'=>2,'origin'=>'Estados Unidos','description'=>''));
-                    */                                        
+                                                            
             /*DB::table('races')->insert(array('id'=>84,'name'=>'Akita','englishname'=>'Akita','specie'=>1,'origin'=>'','description'=>'Leal, amigo e brincalhão'));
             DB::table('races')->insert(array('id'=>85,'name'=>'Basset hound','englishname'=>'Basset hound','specie'=>1,'origin'=>'','description'=>'Paciente, teimoso e charmoso'));
             DB::table('races')->insert(array('id'=>86,'name'=>'Beagle','englishname'=>'Beagle','specie'=>1,'origin'=>'','description'=>'Alegre, companheiro e aventureiro'));

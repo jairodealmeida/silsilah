@@ -30,6 +30,20 @@ class Animal extends Model
         'manager_id'
     ];
 
+       /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+     /**
+     * The "type" of the primary key ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
       /**
      * The attributes that should be hidden for arrays.
      *
@@ -48,8 +62,6 @@ class Animal extends Model
         'wifes.pivot.id'    => 'string',
         'husbands.pivot.id' => 'string',
     ];
-
-    // protected $keyType = 'string';
 
     public function getGenderAttribute()
     {

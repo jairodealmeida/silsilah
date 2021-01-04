@@ -120,9 +120,13 @@
                 </div>
                 {{ Form::close() }}
             </div>
+            <div class="text-right">
             @can('delete', $user)
                 {{ link_to_route('users.edit', __('user.delete'), [$user, 'action' => 'delete'], ['class' => 'btn btn-danger pull-right', 'id' => 'del-user-'.$user->id]) }}
+                
             @endcan
+            
+            </div>
         </div>
     </div>
 @endif
