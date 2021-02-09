@@ -2,6 +2,7 @@
 
 return [
     // Labels
+    'app_name' => 'Genomo',
     'my_profile' => 'Meu perfil',
     'search' => 'Pesquisar',
     'unknown' => 'Desconhecido',
@@ -15,6 +16,9 @@ return [
     'grand_child_count' => 'Netos',
     'user_found' => '<strong>: total </strong> encontrado com a palavra-chave: <strong>: palavra-chave </strong>',
     'search_your_family' => 'Encontre a ninhada',
+    'search_your_pedigrees' => 'Informe o numero do pedigree e clique em pesquisar',
+    'search_your_creators' => 'Informe o nome do criador e clique em pesquisar',
+    'search_in_system' => 'Consulta no sistema',
     'search_your_family_placeholder' => 'Digite o nome / apelido ... clique em Pesquisar',
     'example' => 'Exemplo.',
     'address' => 'Endereço',
@@ -118,5 +122,6 @@ return [
 'record_proprietary' =>'Cadastrar Proprietário',
 'broodtotal' => 'Total de ninhadas',
 'certifyduedate' => 'Validade de certificação', 
+
 
 ];

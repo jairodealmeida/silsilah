@@ -32,6 +32,34 @@ class UsersController extends Controller
         ]);
     }
 
+      /**
+     * Search user by keyword.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function pedigreeSearch(Request $request)
+    {
+        $q = $request->get('q');
+        $users = [];
+        
+            $users = User::with('father', 'mother')->
+            whereNull('office_id')->
+            whereNull('creator_id')->
+            where('admin',false)->
+            where(function ($query) use ($q) {
+                    if($q==''){
+                        $query->where('name', '!=', '');
+                    }else{
+                        $query->where('name', 'like', '%'.$q.'%');
+                        $query->orWhere('nickname', 'like', '%'.$q.'%');
+                    }
+                    
+            })
+            ->orderBy('name', 'asc')
+            ->paginate(24);
+        return view('users.pedigreeSearch', compact('users'));
+    }
+
     /**
      * Search user by keyword.
      *
